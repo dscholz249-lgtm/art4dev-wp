@@ -16,6 +16,11 @@
  * @package art4dev
  */
 
+// PHP 8.1+ makes mysqli THROW on error by default. This script is written around
+// return-false / check-errno semantics (a failed "is it already seeded?" probe on an empty
+// database is expected, not fatal), so turn exceptions off and handle errors explicitly.
+mysqli_report( MYSQLI_REPORT_OFF );
+
 $host = getenv( 'WORDPRESS_DB_HOST' ) ?: 'localhost';
 $port = 3306;
 $colon = strpos( $host, ':' );

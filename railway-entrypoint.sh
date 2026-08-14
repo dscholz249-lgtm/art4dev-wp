@@ -14,14 +14,17 @@ set -euo pipefail
 
 # Build marker — if this line is absent from the deploy logs, Railway is running a stale
 # image and didn't rebuild from the latest commit.
-echo '[railway-entrypoint] build: mpm-fix-5'
+echo '[railway-entrypoint] build: mpm-fix-6'
 
-# Diagnostic: show every MPM the Apache config would load. If more than one line
-# appears here, that's the source of AH00534 and tells us exactly which file to fix.
-echo '[railway-entrypoint] MPM modules in mods-enabled:'
+# --- 0. Force a single MPM (prefork) at RUNTIME --------------------------------------
+# The base image ships with both mpm_event and mpm_prefork enabled -> Apache aborts with
+# "AH00534: More than one MPM loaded". Doing this at runtime (not in the Dockerfile) means
+# it can't be defeated by build-layer caching — it always applies to the running container.
+echo '[railway-entrypoint] normalizing Apache MPM -> prefork'
+rm -f /etc/apache2/mods-enabled/mpm_*.load /etc/apache2/mods-enabled/mpm_*.conf
+a2enmod mpm_prefork >/dev/null 2>&1 || true
+echo '[railway-entrypoint] MPM now enabled:'
 ls -1 /etc/apache2/mods-enabled/ 2>/dev/null | grep -i mpm | sed 's/^/  /' || echo '  (none)'
-echo '[railway-entrypoint] any mpm LoadModule elsewhere in the config:'
-grep -rniE 'LoadModule .*mpm' /etc/apache2/ 2>/dev/null | sed 's/^/  /' || echo '  (none)'
 
 # --- 1. Apache listens on Railway's $PORT (defaults to 80 for local runs) ---------
 : "${PORT:=80}"
