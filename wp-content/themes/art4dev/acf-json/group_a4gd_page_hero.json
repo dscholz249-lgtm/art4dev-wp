@@ -1,0 +1,63 @@
+{
+    "key": "group_a4gd_page_hero",
+    "title": "Page Hero",
+    "fields": [
+        {
+            "key": "field_page_hero_eyebrow",
+            "label": "Hero Eyebrow",
+            "name": "hero_eyebrow",
+            "type": "text",
+            "instructions": "Small label displayed above the page title (e.g. \"About\", \"Take Action\"). Leave blank to omit.",
+            "required": 0,
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_page_hero_title",
+            "label": "Hero Title",
+            "name": "hero_title",
+            "type": "text",
+            "instructions": "Optional override for the page hero H1. Defaults to the page title if blank.",
+            "required": 0,
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_page_hero_intro",
+            "label": "Hero Intro",
+            "name": "hero_intro",
+            "type": "textarea",
+            "instructions": "Short intro paragraph shown beneath the hero title.",
+            "rows": 3,
+            "new_lines": "wpautop",
+            "required": 0
+        },
+        {
+            "key": "field_page_hero_image",
+            "label": "Hero Image",
+            "name": "hero_image",
+            "type": "image",
+            "instructions": "Optional hero image. Falls back to the featured image if not set.",
+            "return_format": "array",
+            "preview_size": "medium",
+            "required": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

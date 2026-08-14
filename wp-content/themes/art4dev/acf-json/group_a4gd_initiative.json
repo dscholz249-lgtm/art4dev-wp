@@ -1,0 +1,97 @@
+{
+    "key": "group_a4gd_initiative",
+    "title": "Initiative Details",
+    "fields": [
+        {
+            "key": "field_init_tagline",
+            "label": "Tagline",
+            "name": "tagline",
+            "type": "text",
+            "instructions": "One-line description shown on the initiative card.",
+            "required": 0
+        },
+        {
+            "key": "field_init_status",
+            "label": "Status",
+            "name": "status",
+            "type": "select",
+            "instructions": "Current status of the initiative.",
+            "choices": {
+                "active": "Active",
+                "ongoing": "Ongoing",
+                "archived": "Archived",
+                "upcoming": "Upcoming"
+            },
+            "default_value": "active",
+            "return_format": "value",
+            "required": 0,
+            "wrapper": {
+                "width": "33"
+            }
+        },
+        {
+            "key": "field_init_year_started",
+            "label": "Year Started",
+            "name": "year_started",
+            "type": "number",
+            "instructions": "Year the initiative began (e.g. 2005).",
+            "required": 0,
+            "wrapper": {
+                "width": "33"
+            }
+        },
+        {
+            "key": "field_init_is_flagship",
+            "label": "Flagship Initiative",
+            "name": "is_flagship",
+            "type": "true_false",
+            "instructions": "If enabled, this initiative may be featured on the homepage.",
+            "ui": 1,
+            "default_value": 0,
+            "wrapper": {
+                "width": "33"
+            }
+        },
+        {
+            "key": "field_init_partners",
+            "label": "Partners",
+            "name": "partners",
+            "type": "textarea",
+            "instructions": "Comma-separated list of partner organization names.",
+            "rows": 2,
+            "new_lines": "",
+            "required": 0
+        },
+        {
+            "key": "field_init_regions_text",
+            "label": "Regions (display)",
+            "name": "regions_text",
+            "type": "text",
+            "instructions": "Human-readable region list (e.g. \"US, Canada, Nigeria, Cameroon\").",
+            "required": 0
+        },
+        {
+            "key": "field_init_learn_more_url",
+            "label": "Learn More URL",
+            "name": "learn_more_url",
+            "type": "url",
+            "instructions": "External link if the initiative has its own site or page elsewhere.",
+            "required": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "initiative"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

@@ -1,0 +1,158 @@
+/* ============================================================
+   Arts for Global Development — component styles
+   ------------------------------------------------------------
+   GENERATED: token bridge + the static prototype's component CSS.
+   Source of truth for the components is art4dev-site/css/styles.css.
+
+   theme.json is canonical for color, typography and spacing (per CLAUDE.md).
+   The prototype's components are written against its own --color-* / --fs-* /
+   --space-* tokens, so rather than fork 1300 lines of CSS to speak
+   --wp--preset--*, this layer re-points each prototype token at the matching
+   theme.json preset. One source of truth, component CSS ports over unchanged.
+
+   Tokens with no theme.json equivalent (line-height, tracking, motion, radii,
+   containers) keep the literal values from art4dev-site/css/tokens.css.
+   ============================================================ */
+
+:root {
+  /* -- Brand colors -> theme.json palette -------------------- */
+  --brand-burnt-ochre:  var(--wp--preset--color--burnt-ochre);
+  --brand-saffron:      var(--wp--preset--color--saffron);
+  --brand-deep-indigo:  var(--wp--preset--color--deep-indigo);
+  --brand-deep-teal:    var(--wp--preset--color--deep-teal);
+  --brand-sage:         var(--wp--preset--color--sage-green);
+  --brand-bone:         var(--wp--preset--color--bone-white);
+
+  /* -- Semantic role tokens -> theme.json palette ------------ */
+  --color-paper:        var(--wp--preset--color--paper);
+  --color-cream:        var(--wp--preset--color--cream);
+  --color-cream-soft:   var(--wp--preset--color--cream-soft);
+
+  --color-ink:          var(--wp--preset--color--ink);
+  --color-ink-soft:     var(--wp--preset--color--ink-soft);
+  --color-ink-muted:    var(--wp--preset--color--ink-muted);
+
+  --color-clay:         var(--wp--preset--color--clay);
+  --color-clay-hover:   var(--wp--preset--color--clay-hover);
+  --color-clay-soft:    var(--wp--preset--color--clay-soft);
+
+  --color-saffron:      var(--wp--preset--color--saffron);
+  --color-teal:         var(--wp--preset--color--deep-teal);
+  --color-sage:         var(--wp--preset--color--sage-green);
+
+  /* Legacy aliases retained so existing components keep working */
+  --color-ochre:        var(--wp--preset--color--saffron);
+  --color-rust:         var(--wp--preset--color--burnt-ochre);
+
+  /* Lines — derived from ink. Literal rgba: alpha over a preset var isn't
+     expressible without color-mix, and these must stay exact. */
+  --color-rule:         var(--wp--preset--color--deep-indigo);
+  --color-rule-soft:    rgba(31, 42, 68, 0.14);
+  --color-rule-hair:    rgba(31, 42, 68, 0.08);
+
+  /* -- Typography -> theme.json fontFamilies ----------------- */
+  --font-display: var(--wp--preset--font-family--display);
+  --font-sans:    var(--wp--preset--font-family--body);
+  --font-mono:    ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* -- Type scale -> theme.json fontSizes (fluid clamps included) -- */
+  --fs-eyebrow:  var(--wp--preset--font-size--eyebrow);
+  --fs-body-sm:  var(--wp--preset--font-size--small);
+  --fs-body:     var(--wp--preset--font-size--body);
+  --fs-body-lg:  var(--wp--preset--font-size--body-lg);
+  --fs-h6:       var(--wp--preset--font-size--h6);
+  --fs-h5:       var(--wp--preset--font-size--h5);
+  --fs-h4:       var(--wp--preset--font-size--h4);
+  --fs-h3:       var(--wp--preset--font-size--h3);
+  --fs-h2:       var(--wp--preset--font-size--h2);
+  --fs-h1:       var(--wp--preset--font-size--h1);
+  --fs-display:  var(--wp--preset--font-size--display);
+
+  /* Heading weights */
+  --fw-display-light:  300;
+  --fw-display-medium: 500;
+  --fw-display-bold:   600;
+  --fw-body:           400;
+  --fw-body-medium:    500;
+  --fw-body-bold:      600;
+
+  /* Line-height — no theme.json equivalent */
+  --lh-tight:    1.02;
+  --lh-snug:     1.15;
+  --lh-base:     1.55;
+  --lh-relaxed:  1.7;
+
+  /* Tracking — no theme.json equivalent */
+  --tr-tight:    -0.02em;
+  --tr-base:     0;
+  --tr-wide:     0.08em;
+  --tr-wider:    0.16em;
+
+  /* -- Layout ----------------------------------------------- */
+  --gutter:           clamp(1.25rem, 3vw, 2.5rem);
+  --container:        1320px;  /* == theme.json settings.layout.wideSize */
+  --container-narrow: 880px;
+  --container-text:   680px;   /* == theme.json settings.layout.contentSize */
+
+  /* -- Space -> theme.json spacingSizes ---------------------- */
+  --space-1:  var(--wp--preset--spacing--1);
+  --space-2:  var(--wp--preset--spacing--2);
+  --space-3:  var(--wp--preset--spacing--3);
+  --space-4:  var(--wp--preset--spacing--4);
+  --space-5:  var(--wp--preset--spacing--5);
+  --space-6:  var(--wp--preset--spacing--6);
+  --space-7:  var(--wp--preset--spacing--7);
+  --space-8:  var(--wp--preset--spacing--8);
+  --space-9:  var(--wp--preset--spacing--9);
+  --space-10: var(--wp--preset--spacing--10);
+  --space-11: var(--wp--preset--spacing--11);
+
+  /* -- Motion ----------------------------------------------- */
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:     150ms;
+  --dur-base:     320ms;
+  --dur-slow:     600ms;
+
+  /* -- Borders / Radii -------------------------------------- */
+  --radius-sm:   3px;
+  --radius-md:   6px;
+  --radius-lg:   14px;
+  --radius-pill: 999px;
+}
+
+/* ------------------------------------------------------------
+   Base — only what theme.json cannot express.
+   Body font/color/background come from theme.json styles.
+   ------------------------------------------------------------ */
+img, svg, video { display: block; max-width: 100%; height: auto; }
+
+a {
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+button { font: inherit; cursor: pointer; }
+
+::selection {
+  background: var(--color-clay);
+  color: var(--color-paper);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* WordPress strips the prototype's <main>/<section> wrappers into blocks; the
+   editor's own alignment handling covers full-bleed, so neutralise the root
+   padding on sections that must bleed edge to edge. */
+.wp-site-blocks > .site-header,
+.wp-site-blocks > .site-footer { max-width: none; }
+
+/* ============================================================
+   Components — ported verbatim from art4dev-site/css/styles.css
+   ============================================================ */

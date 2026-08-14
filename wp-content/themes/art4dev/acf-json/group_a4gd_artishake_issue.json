@@ -1,0 +1,97 @@
+{
+    "key": "group_a4gd_artishake_issue",
+    "title": "art'ishake Issue Details",
+    "fields": [
+        {
+            "key": "field_ais_issue_number",
+            "label": "Issue Number",
+            "name": "issue_number",
+            "type": "text",
+            "instructions": "e.g. \"Issue 12\" or \"Vol. 3, Issue 2\".",
+            "required": 0,
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_ais_theme",
+            "label": "Theme",
+            "name": "theme",
+            "type": "text",
+            "instructions": "Issue theme (e.g. \"Textile Arts\").",
+            "required": 0,
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_ais_publish_date",
+            "label": "Publish Date",
+            "name": "publish_date",
+            "type": "date_picker",
+            "display_format": "F j, Y",
+            "return_format": "F j, Y",
+            "first_day": 1,
+            "required": 0,
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_ais_submissions_open",
+            "label": "Submissions Open",
+            "name": "submissions_open",
+            "type": "true_false",
+            "instructions": "Enable to display the \"Submissions Open\" CTA.",
+            "ui": 1,
+            "default_value": 0,
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_ais_cover_image",
+            "label": "Cover Image",
+            "name": "cover_image",
+            "type": "image",
+            "instructions": "Cover artwork for this issue.",
+            "return_format": "array",
+            "preview_size": "medium",
+            "required": 0
+        },
+        {
+            "key": "field_ais_pdf_file",
+            "label": "Full Issue PDF",
+            "name": "pdf_file",
+            "type": "file",
+            "instructions": "Full-issue PDF for download.",
+            "return_format": "array",
+            "required": 0
+        },
+        {
+            "key": "field_ais_contributors",
+            "label": "Contributors",
+            "name": "contributors",
+            "type": "textarea",
+            "instructions": "Comma-separated list of contributors for this issue.",
+            "rows": 3,
+            "new_lines": "",
+            "required": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "artishake_issue"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

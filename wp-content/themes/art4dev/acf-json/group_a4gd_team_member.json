@@ -1,0 +1,73 @@
+{
+    "key": "group_a4gd_team_member",
+    "title": "Team Member Details",
+    "fields": [
+        {
+            "key": "field_team_full_name",
+            "label": "Full Name",
+            "name": "full_name",
+            "type": "text",
+            "instructions": "Full name as displayed on the team page.",
+            "required": 1,
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_team_role_title",
+            "label": "Role Title",
+            "name": "role_title",
+            "type": "text",
+            "instructions": "Position title (e.g. \"Founder & Director\", \"Board Member\", \"Adviser\").",
+            "required": 0,
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_team_short_bio",
+            "label": "Short Bio",
+            "name": "short_bio",
+            "type": "textarea",
+            "instructions": "Approximately 50-word bio shown on the team card.",
+            "rows": 4,
+            "new_lines": "wpautop",
+            "required": 0
+        },
+        {
+            "key": "field_team_long_bio",
+            "label": "Long Bio",
+            "name": "long_bio",
+            "type": "wysiwyg",
+            "instructions": "Optional expanded biography for detail views.",
+            "tabs": "visual",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "required": 0
+        },
+        {
+            "key": "field_team_sort_order",
+            "label": "Sort Order",
+            "name": "sort_order",
+            "type": "number",
+            "instructions": "Lower numbers appear first within a role group. Use increments of 10 (10, 20, 30...) for easy reordering.",
+            "default_value": 100,
+            "required": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "team_member"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

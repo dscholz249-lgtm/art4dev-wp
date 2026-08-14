@@ -1,0 +1,74 @@
+/* ============================================================
+   Components with no counterpart in the static prototype.
+   ------------------------------------------------------------
+   The prototype has no initiative *detail* page — it only mocks the
+   initiatives index — so single-initiative.html needs a couple of components
+   that styles.css never defined. Everything here is built from the same
+   tokens as the ported CSS, so it inherits the theme.json presets.
+
+   Anything that DOES exist in the prototype belongs in styles.css upstream,
+   not here.
+   ============================================================ */
+
+/* Initiative detail — image + meta aside beside the body copy. */
+.init-single__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .init-single__grid {
+    grid-template-columns: minmax(280px, 380px) 1fr;
+    gap: var(--space-8);
+  }
+  /* Meta travels with the reader on long entries. */
+  .init-single__aside {
+    position: sticky;
+    top: var(--space-7);
+  }
+}
+
+.init-single__aside img {
+  border-radius: var(--radius-md);
+  width: 100%;
+}
+
+/* Status / Since / Where / Partners. Rows are omitted when the field is empty,
+   so this must not rely on a fixed row count. */
+.init-meta {
+  margin: var(--space-5) 0 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem var(--space-4);
+  font-size: var(--fs-body-sm);
+}
+
+.init-meta dt {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: var(--tr-wider);
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-ink-muted);
+  padding-top: 0.15em;
+}
+
+.init-meta dd {
+  margin: 0;
+  color: var(--color-ink-soft);
+  line-height: var(--lh-base);
+}
+
+/* The initiatives index links its card titles; the prototype's cards were inert
+   mockups, so styles.css never covered the anchor state. */
+.init-card h3 a,
+.init-card__media a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.init-card h3 a:hover {
+  color: var(--color-clay);
+}

@@ -1,0 +1,11 @@
+/* ------------------------------------------------------------
+   No-JS safety net.
+   .in-view starts at opacity:0 and only main.js adds .is-visible, so without
+   JS every revealed section would be invisible — not degraded, gone. The
+   prototype has this hazard too; it matters more here because this is the
+   real site. `scripting: none` covers JS-disabled browsers.
+   ------------------------------------------------------------ */
+@media (scripting: none) {
+  .in-view { opacity: 1; transform: none; }
+  .reveal  { opacity: 1; transform: none; animation: none; }
+}

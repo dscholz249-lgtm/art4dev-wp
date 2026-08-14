@@ -1,0 +1,288 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "Arts for Global Development",
+
+  "settings": {
+    "appearanceTools": true,
+    "useRootPaddingAwareAlignments": true,
+
+    "layout": {
+      "contentSize": "680px",
+      "wideSize": "1320px"
+    },
+
+    "spacing": {
+      "units": ["px", "em", "rem", "vw", "%"],
+      "padding": true,
+      "margin": true,
+      "blockGap": true,
+      "spacingSizes": [
+        { "slug": "1",  "name": "1 — XS",   "size": "0.25rem" },
+        { "slug": "2",  "name": "2 — SM",   "size": "0.5rem" },
+        { "slug": "3",  "name": "3",         "size": "0.75rem" },
+        { "slug": "4",  "name": "4 — Base", "size": "1rem" },
+        { "slug": "5",  "name": "5",         "size": "1.5rem" },
+        { "slug": "6",  "name": "6 — MD",   "size": "2rem" },
+        { "slug": "7",  "name": "7",         "size": "3rem" },
+        { "slug": "8",  "name": "8 — LG",   "size": "4rem" },
+        { "slug": "9",  "name": "9",         "size": "6rem" },
+        { "slug": "10", "name": "10 — XL",  "size": "8rem" },
+        { "slug": "11", "name": "11 — 2XL", "size": "10rem" }
+      ]
+    },
+
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "custom": true,
+      "customDuotone": true,
+      "defaultDuotone": false,
+      "defaultGradients": false,
+      "defaultPalette": false,
+
+      "palette": [
+        { "slug": "burnt-ochre",  "name": "Burnt Ochre",  "color": "#C65A1E" },
+        { "slug": "saffron",      "name": "Saffron",      "color": "#E39A2E" },
+        { "slug": "deep-indigo",  "name": "Deep Indigo",  "color": "#1F2A44" },
+        { "slug": "deep-teal",    "name": "Deep Teal",    "color": "#0F4C5C" },
+        { "slug": "sage-green",   "name": "Sage Green",   "color": "#8AA39B" },
+        { "slug": "bone-white",   "name": "Bone White",   "color": "#F7F5F0" },
+
+        { "slug": "ink",          "name": "Ink (Primary Text)",       "color": "#1F2A44" },
+        { "slug": "ink-soft",     "name": "Ink Soft (Body)",           "color": "#3A4660" },
+        { "slug": "ink-muted",    "name": "Ink Muted (Metadata)",      "color": "#6A7488" },
+
+        { "slug": "clay",         "name": "Clay (Primary Accent)",     "color": "#C65A1E" },
+        { "slug": "clay-hover",   "name": "Clay Hover",                "color": "#A84915" },
+        { "slug": "clay-soft",    "name": "Clay Soft (Fill)",          "color": "#F0D5C2" },
+
+        { "slug": "paper",        "name": "Paper (Background)",        "color": "#F7F5F0" },
+        { "slug": "cream",        "name": "Cream (Alt Section)",       "color": "#EFEBE2" },
+        { "slug": "cream-soft",   "name": "Cream Soft (Subtle Band)",  "color": "#F3EFE6" }
+      ],
+
+      "gradients": [
+        {
+          "slug": "hero-scrim",
+          "name": "Hero Scrim (bottom shade)",
+          "gradient": "linear-gradient(180deg, rgba(31,42,68,0.10) 0%, rgba(31,42,68,0.00) 35%, rgba(31,42,68,0.45) 100%)"
+        }
+      ]
+    },
+
+    "typography": {
+      "customFontSize": true,
+      "dropCap": false,
+      "fontStyle": true,
+      "fontWeight": true,
+      "letterSpacing": true,
+      "lineHeight": true,
+      "textColumns": true,
+      "textDecoration": true,
+      "textTransform": true,
+      "writingMode": false,
+      "fluid": true,
+
+      "fontFamilies": [
+        {
+          "slug": "display",
+          "name": "Figtree (Display)",
+          "fontFamily": "Figtree, \"Helvetica Neue\", Arial, sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "Figtree",
+              "fontWeight": "300 900",
+              "fontStyle": "normal",
+              "fontStretch": "normal",
+              "src": ["file:./assets/fonts/figtree-variable.woff2"]
+            },
+            {
+              "fontFamily": "Figtree",
+              "fontWeight": "300 900",
+              "fontStyle": "italic",
+              "fontStretch": "normal",
+              "src": ["file:./assets/fonts/figtree-variable-italic.woff2"]
+            }
+          ]
+        },
+        {
+          "slug": "body",
+          "name": "Open Sans (Body)",
+          "fontFamily": "\"Open Sans\", \"Helvetica Neue\", Arial, sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "Open Sans",
+              "fontWeight": "300 800",
+              "fontStyle": "normal",
+              "fontStretch": "normal",
+              "src": ["file:./assets/fonts/open-sans-variable.woff2"]
+            },
+            {
+              "fontFamily": "Open Sans",
+              "fontWeight": "300 800",
+              "fontStyle": "italic",
+              "fontStretch": "normal",
+              "src": ["file:./assets/fonts/open-sans-variable-italic.woff2"]
+            }
+          ]
+        }
+      ],
+
+      "fontSizes": [
+        { "slug": "eyebrow",  "name": "Eyebrow",         "size": "0.75rem" },
+        { "slug": "small",    "name": "Small",           "size": "0.875rem" },
+        { "slug": "body",     "name": "Body",            "size": "1rem",
+          "fluid": { "min": "1rem",     "max": "1.0625rem" } },
+        { "slug": "body-lg",  "name": "Body Large",      "size": "1.125rem",
+          "fluid": { "min": "1.0625rem","max": "1.125rem" } },
+        { "slug": "h6",       "name": "H6",              "size": "1.125rem" },
+        { "slug": "h5",       "name": "H5",              "size": "1.375rem" },
+        { "slug": "h4",       "name": "H4",              "size": "1.75rem",
+          "fluid": { "min": "1.5rem",   "max": "1.75rem" } },
+        { "slug": "h3",       "name": "H3",              "size": "2.25rem",
+          "fluid": { "min": "1.75rem",  "max": "2.25rem" } },
+        { "slug": "h2",       "name": "H2",              "size": "3.5rem",
+          "fluid": { "min": "2.25rem",  "max": "3.5rem" } },
+        { "slug": "h1",       "name": "H1",              "size": "6.5rem",
+          "fluid": { "min": "3rem",     "max": "6.5rem" } },
+        { "slug": "display",  "name": "Display",         "size": "11rem",
+          "fluid": { "min": "4rem",     "max": "11rem" } }
+      ]
+    },
+
+    "border": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  },
+
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--paper)",
+      "text":       "var(--wp--preset--color--ink)"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--body)",
+      "fontSize":   "var(--wp--preset--font-size--body)",
+      "lineHeight": "1.55",
+      "fontWeight": "400"
+    },
+    "spacing": {
+      "padding": {
+        "top":    "0",
+        "right":  "var(--wp--preset--spacing--6)",
+        "bottom": "0",
+        "left":   "var(--wp--preset--spacing--6)"
+      },
+      "blockGap": "var(--wp--preset--spacing--6)"
+    },
+    "elements": {
+      "link": {
+        "color": { "text": "var(--wp--preset--color--clay)" },
+        "typography": { "textDecoration": "none" },
+        ":hover": {
+          "color": { "text": "var(--wp--preset--color--clay-hover)" },
+          "typography": { "textDecoration": "underline" }
+        }
+      },
+      "h1": {
+        "typography": {
+          "fontFamily":    "var(--wp--preset--font-family--display)",
+          "fontSize":      "var(--wp--preset--font-size--h1)",
+          "fontWeight":    "500",
+          "lineHeight":    "1.02",
+          "letterSpacing": "-0.02em"
+        },
+        "color": { "text": "var(--wp--preset--color--ink)" }
+      },
+      "h2": {
+        "typography": {
+          "fontFamily":    "var(--wp--preset--font-family--display)",
+          "fontSize":      "var(--wp--preset--font-size--h2)",
+          "fontWeight":    "500",
+          "lineHeight":    "1.05",
+          "letterSpacing": "-0.02em"
+        },
+        "color": { "text": "var(--wp--preset--color--ink)" }
+      },
+      "h3": {
+        "typography": {
+          "fontFamily":    "var(--wp--preset--font-family--display)",
+          "fontSize":      "var(--wp--preset--font-size--h3)",
+          "fontWeight":    "500",
+          "lineHeight":    "1.1",
+          "letterSpacing": "-0.015em"
+        },
+        "color": { "text": "var(--wp--preset--color--ink)" }
+      },
+      "h4": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)",
+          "fontSize":   "var(--wp--preset--font-size--h4)",
+          "fontWeight": "500",
+          "lineHeight": "1.15"
+        },
+        "color": { "text": "var(--wp--preset--color--ink)" }
+      },
+      "h5": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)",
+          "fontSize":   "var(--wp--preset--font-size--h5)",
+          "fontWeight": "600",
+          "lineHeight": "1.2"
+        },
+        "color": { "text": "var(--wp--preset--color--ink)" }
+      },
+      "h6": {
+        "typography": {
+          "fontFamily":    "var(--wp--preset--font-family--display)",
+          "fontSize":      "var(--wp--preset--font-size--h6)",
+          "fontWeight":    "600",
+          "lineHeight":    "1.3",
+          "letterSpacing": "0.08em",
+          "textTransform": "uppercase"
+        },
+        "color": { "text": "var(--wp--preset--color--ink)" }
+      },
+      "button": {
+        "border": { "radius": "999px" },
+        "color": {
+          "background": "var(--wp--preset--color--clay)",
+          "text":       "var(--wp--preset--color--paper)"
+        },
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)",
+          "fontWeight": "600",
+          "fontSize":   "0.95rem"
+        },
+        "spacing": {
+          "padding": {
+            "top":    "0.85rem",
+            "right":  "1.5rem",
+            "bottom": "0.85rem",
+            "left":   "1.5rem"
+          }
+        },
+        ":hover": {
+          "color": { "background": "var(--wp--preset--color--clay-hover)" }
+        }
+      }
+    }
+  },
+
+  "customTemplates": [
+    { "name": "front-page",       "title": "Front Page (Hero)",       "postTypes": ["page"] },
+    { "name": "page-with-hero",   "title": "Interior Page with Hero", "postTypes": ["page"] },
+    { "name": "single-initiative","title": "Initiative Detail",       "postTypes": ["initiative"] },
+    { "name": "archive-initiative","title": "Initiatives Archive",    "postTypes": ["initiative"] }
+  ],
+
+  "templateParts": [
+    { "name": "header", "title": "Header", "area": "header" },
+    { "name": "footer", "title": "Footer", "area": "footer" }
+  ]
+}

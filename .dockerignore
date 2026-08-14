@@ -1,0 +1,9 @@
+# Keep the build context lean — none of this belongs in the image.
+.git
+.gitignore
+.dockerignore
+README.md
+**/.DS_Store
+**/node_modules
+# The CSS build sources are for local dev only; the generated main.css is already baked.
+wp-content/themes/art4dev/assets/css/src

@@ -1,0 +1,1562 @@
+/* ============================================================
+   Arts for Global Development — component styles
+   ------------------------------------------------------------
+   GENERATED: token bridge + the static prototype's component CSS.
+   Source of truth for the components is art4dev-site/css/styles.css.
+
+   theme.json is canonical for color, typography and spacing (per CLAUDE.md).
+   The prototype's components are written against its own --color-* / --fs-* /
+   --space-* tokens, so rather than fork 1300 lines of CSS to speak
+   --wp--preset--*, this layer re-points each prototype token at the matching
+   theme.json preset. One source of truth, component CSS ports over unchanged.
+
+   Tokens with no theme.json equivalent (line-height, tracking, motion, radii,
+   containers) keep the literal values from art4dev-site/css/tokens.css.
+   ============================================================ */
+
+:root {
+  /* -- Brand colors -> theme.json palette -------------------- */
+  --brand-burnt-ochre:  var(--wp--preset--color--burnt-ochre);
+  --brand-saffron:      var(--wp--preset--color--saffron);
+  --brand-deep-indigo:  var(--wp--preset--color--deep-indigo);
+  --brand-deep-teal:    var(--wp--preset--color--deep-teal);
+  --brand-sage:         var(--wp--preset--color--sage-green);
+  --brand-bone:         var(--wp--preset--color--bone-white);
+
+  /* -- Semantic role tokens -> theme.json palette ------------ */
+  --color-paper:        var(--wp--preset--color--paper);
+  --color-cream:        var(--wp--preset--color--cream);
+  --color-cream-soft:   var(--wp--preset--color--cream-soft);
+
+  --color-ink:          var(--wp--preset--color--ink);
+  --color-ink-soft:     var(--wp--preset--color--ink-soft);
+  --color-ink-muted:    var(--wp--preset--color--ink-muted);
+
+  --color-clay:         var(--wp--preset--color--clay);
+  --color-clay-hover:   var(--wp--preset--color--clay-hover);
+  --color-clay-soft:    var(--wp--preset--color--clay-soft);
+
+  --color-saffron:      var(--wp--preset--color--saffron);
+  --color-teal:         var(--wp--preset--color--deep-teal);
+  --color-sage:         var(--wp--preset--color--sage-green);
+
+  /* Legacy aliases retained so existing components keep working */
+  --color-ochre:        var(--wp--preset--color--saffron);
+  --color-rust:         var(--wp--preset--color--burnt-ochre);
+
+  /* Lines — derived from ink. Literal rgba: alpha over a preset var isn't
+     expressible without color-mix, and these must stay exact. */
+  --color-rule:         var(--wp--preset--color--deep-indigo);
+  --color-rule-soft:    rgba(31, 42, 68, 0.14);
+  --color-rule-hair:    rgba(31, 42, 68, 0.08);
+
+  /* -- Typography -> theme.json fontFamilies ----------------- */
+  --font-display: var(--wp--preset--font-family--display);
+  --font-sans:    var(--wp--preset--font-family--body);
+  --font-mono:    ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* -- Type scale -> theme.json fontSizes (fluid clamps included) -- */
+  --fs-eyebrow:  var(--wp--preset--font-size--eyebrow);
+  --fs-body-sm:  var(--wp--preset--font-size--small);
+  --fs-body:     var(--wp--preset--font-size--body);
+  --fs-body-lg:  var(--wp--preset--font-size--body-lg);
+  --fs-h6:       var(--wp--preset--font-size--h6);
+  --fs-h5:       var(--wp--preset--font-size--h5);
+  --fs-h4:       var(--wp--preset--font-size--h4);
+  --fs-h3:       var(--wp--preset--font-size--h3);
+  --fs-h2:       var(--wp--preset--font-size--h2);
+  --fs-h1:       var(--wp--preset--font-size--h1);
+  --fs-display:  var(--wp--preset--font-size--display);
+
+  /* Heading weights */
+  --fw-display-light:  300;
+  --fw-display-medium: 500;
+  --fw-display-bold:   600;
+  --fw-body:           400;
+  --fw-body-medium:    500;
+  --fw-body-bold:      600;
+
+  /* Line-height — no theme.json equivalent */
+  --lh-tight:    1.02;
+  --lh-snug:     1.15;
+  --lh-base:     1.55;
+  --lh-relaxed:  1.7;
+
+  /* Tracking — no theme.json equivalent */
+  --tr-tight:    -0.02em;
+  --tr-base:     0;
+  --tr-wide:     0.08em;
+  --tr-wider:    0.16em;
+
+  /* -- Layout ----------------------------------------------- */
+  --gutter:           clamp(1.25rem, 3vw, 2.5rem);
+  --container:        1320px;  /* == theme.json settings.layout.wideSize */
+  --container-narrow: 880px;
+  --container-text:   680px;   /* == theme.json settings.layout.contentSize */
+
+  /* -- Space -> theme.json spacingSizes ---------------------- */
+  --space-1:  var(--wp--preset--spacing--1);
+  --space-2:  var(--wp--preset--spacing--2);
+  --space-3:  var(--wp--preset--spacing--3);
+  --space-4:  var(--wp--preset--spacing--4);
+  --space-5:  var(--wp--preset--spacing--5);
+  --space-6:  var(--wp--preset--spacing--6);
+  --space-7:  var(--wp--preset--spacing--7);
+  --space-8:  var(--wp--preset--spacing--8);
+  --space-9:  var(--wp--preset--spacing--9);
+  --space-10: var(--wp--preset--spacing--10);
+  --space-11: var(--wp--preset--spacing--11);
+
+  /* -- Motion ----------------------------------------------- */
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:     150ms;
+  --dur-base:     320ms;
+  --dur-slow:     600ms;
+
+  /* -- Borders / Radii -------------------------------------- */
+  --radius-sm:   3px;
+  --radius-md:   6px;
+  --radius-lg:   14px;
+  --radius-pill: 999px;
+}
+
+/* ------------------------------------------------------------
+   Base — only what theme.json cannot express.
+   Body font/color/background come from theme.json styles.
+   ------------------------------------------------------------ */
+img, svg, video { display: block; max-width: 100%; height: auto; }
+
+a {
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+button { font: inherit; cursor: pointer; }
+
+::selection {
+  background: var(--color-clay);
+  color: var(--color-paper);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* WordPress strips the prototype's <main>/<section> wrappers into blocks; the
+   editor's own alignment handling covers full-bleed, so neutralise the root
+   padding on sections that must bleed edge to edge. */
+.wp-site-blocks > .site-header,
+.wp-site-blocks > .site-footer { max-width: none; }
+
+/* ============================================================
+   Components — ported verbatim from art4dev-site/css/styles.css
+   ============================================================ */
+/* ============================================================
+   Arts for Global Development — Main Stylesheet
+   ------------------------------------------------------------
+   Component & layout styles. Mobile-first, then enhanced.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Typography utilities
+   ------------------------------------------------------------ */
+.font-display { font-family: var(--font-display); }
+.font-sans    { font-family: var(--font-sans); }
+.italic       { font-style: italic; }
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--tr-wider);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  display: inline-block;
+}
+.eyebrow--clay { color: var(--color-clay); }
+.eyebrow--center { justify-content: center; }
+.eyebrow--center::before { display: none; }
+.eyebrow--center::after { display: none; }
+
+/* Display headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-display-medium);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-tight);
+  margin: 0;
+  color: var(--color-ink);
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); }
+h5 { font-size: var(--fs-h5); font-weight: var(--fw-display-bold); }
+h6 { font-size: var(--fs-h6); font-weight: var(--fw-display-bold); letter-spacing: var(--tr-wide); text-transform: uppercase; }
+
+p { margin: 0 0 1.25em 0; max-width: 70ch; }
+p:last-child { margin-bottom: 0; }
+
+.lead {
+  font-size: var(--fs-body-lg);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+  max-width: 50ch;
+}
+
+.prose { max-width: var(--container-text); }
+.prose p { font-size: var(--fs-body); line-height: var(--lh-relaxed); color: var(--color-ink-soft); }
+.prose p strong { color: var(--color-ink); font-weight: 600; }
+.prose ul { padding-left: 1.25rem; margin: 0 0 1.5rem; color: var(--color-ink-soft); line-height: var(--lh-relaxed); }
+.prose ul li { margin-bottom: 0.5rem; }
+.prose h2 { font-size: var(--fs-h3); margin-top: 2.5rem; margin-bottom: 1rem; }
+.prose h3 { font-size: var(--fs-h4); margin-top: 2rem; margin-bottom: 0.75rem; }
+.prose a { color: var(--color-clay); border-bottom: 1px solid var(--color-clay-soft); transition: border-color var(--dur-fast); }
+.prose a:hover { border-color: var(--color-clay); }
+
+/* ------------------------------------------------------------
+   Layout primitives
+   ------------------------------------------------------------ */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container-narrow { max-width: var(--container-narrow); margin-inline: auto; padding-inline: var(--gutter); }
+
+.section { padding-block: clamp(4rem, 9vw, 8rem); }
+.section-sm { padding-block: clamp(3rem, 6vw, 5rem); }
+
+.section--cream { background: var(--color-cream); }
+.section--ink { background: var(--color-ink); color: var(--color-paper); }
+.section--ink h1, .section--ink h2, .section--ink h3,
+.section--ink h4, .section--ink h5, .section--ink h6 { color: var(--color-paper); }
+.section--ink .lead, .section--ink .prose p { color: rgba(247, 245, 240, 0.78); }
+
+/* Subtle hairline divider for editorial pacing */
+.rule {
+  border: 0;
+  height: 1px;
+  background: var(--color-rule-soft);
+  margin: 0;
+}
+.rule--strong { background: var(--color-rule); height: 1px; }
+
+/* ------------------------------------------------------------
+   Buttons & links
+   ------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.95rem 1.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--dur-base) var(--ease-out);
+  white-space: nowrap;
+}
+
+.btn--clay {
+  background: var(--color-clay);
+  color: var(--color-paper);
+}
+.btn--clay:hover { background: var(--color-clay-hover); transform: translateY(-1px); }
+
+.btn--ink {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+.btn--ink:hover { background: var(--color-ink-soft); transform: translateY(-1px); }
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+}
+.btn--outline:hover { background: var(--color-ink); color: var(--color-paper); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-ink);
+  padding: 0.5rem 0;
+  border-radius: 0;
+  border-bottom: 1px solid var(--color-ink);
+}
+.btn--ghost:hover { color: var(--color-clay); border-bottom-color: var(--color-clay); }
+
+.btn .arrow {
+  display: inline-block;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.btn:hover .arrow { transform: translateX(4px); }
+
+/* Inline arrow link */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+  border-bottom: 1px solid var(--color-rule);
+  padding-bottom: 0.25rem;
+  transition: color var(--dur-fast), border-color var(--dur-fast);
+}
+.link-arrow:hover { color: var(--color-clay); border-bottom-color: var(--color-clay); }
+.link-arrow .arrow { transition: transform var(--dur-base) var(--ease-out); }
+.link-arrow:hover .arrow { transform: translateX(4px); }
+
+/* ------------------------------------------------------------
+   Header / Navigation
+   ------------------------------------------------------------ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(247, 245, 240, 0.88);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid var(--color-rule-hair);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-block: 1.1rem;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+/* The horizontal logo SVG contains both the mark and the wordmark.
+   Scaled to feel proportionate against the nav at all breakpoints. */
+.site-logo__mark {
+  height: clamp(36px, 4vw, 52px);
+  width: auto;
+  display: block;
+}
+
+.site-nav { display: none; }
+@media (min-width: 980px) {
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 2.25rem;
+  }
+}
+
+.site-nav a {
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color var(--dur-fast);
+}
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: var(--color-clay);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.site-nav a:hover::after,
+.site-nav a[aria-current="page"]::after { transform: scaleX(1); }
+.site-nav a[aria-current="page"] { color: var(--color-clay); }
+
+/* Dropdown */
+.nav-item--has-menu { position: relative; }
+.nav-item--has-menu > a::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg);
+  margin-right: 0.55rem;
+  margin-bottom: 2px;
+  vertical-align: middle;
+  transition: transform var(--dur-fast);
+}
+.nav-item--has-menu:hover > a::before { transform: rotate(225deg); margin-bottom: -2px; }
+
+.nav-menu {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: -1rem;
+  min-width: 280px;
+  background: var(--color-paper);
+  border: 1px solid var(--color-rule-hair);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  box-shadow: 0 24px 48px -16px rgba(31, 42, 68, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity var(--dur-fast), transform var(--dur-fast), visibility var(--dur-fast);
+}
+.nav-item--has-menu:hover .nav-menu,
+.nav-item--has-menu:focus-within .nav-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.nav-menu a {
+  display: block;
+  padding: 0.75rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+}
+.nav-menu a:hover { background: var(--color-cream); color: var(--color-clay); }
+.nav-menu a::after { display: none; }
+.nav-menu__group-label {
+  display: block;
+  padding: 0.5rem 0.85rem 0.25rem;
+  font-size: 0.7rem;
+  letter-spacing: var(--tr-wider);
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.site-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  background: transparent;
+  border: 1px solid var(--color-rule-hair);
+  border-radius: var(--radius-pill);
+  padding: 0;
+}
+.menu-toggle span {
+  display: block;
+  width: 18px; height: 1.5px;
+  background: var(--color-ink);
+  position: relative;
+}
+.menu-toggle span::before,
+.menu-toggle span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 18px;
+  height: 1.5px;
+  background: var(--color-ink);
+}
+.menu-toggle span::before { top: -6px; }
+.menu-toggle span::after { top: 6px; }
+@media (min-width: 980px) {
+  .menu-toggle { display: none; }
+}
+
+/* Mobile menu drawer */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: var(--color-paper);
+  z-index: 100;
+  padding: 5rem 2rem 3rem;
+  transform: translateY(-100%);
+  transition: transform var(--dur-base) var(--ease-out);
+  overflow-y: auto;
+}
+.mobile-menu.is-open { transform: translateY(0); }
+.mobile-menu__close {
+  position: absolute;
+  top: 1.25rem; right: 1.5rem;
+  background: transparent; border: 0;
+  font-size: 2rem; line-height: 1;
+  color: var(--color-ink);
+}
+.mobile-menu__group { margin-bottom: 1.75rem; }
+.mobile-menu__group-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tr-wider);
+  color: var(--color-clay);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.mobile-menu a {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  line-height: 1.3;
+  padding: 0.35rem 0;
+  color: var(--color-ink);
+}
+.mobile-menu a:hover { color: var(--color-clay); }
+
+/* ------------------------------------------------------------
+   Hero — homepage: full-bleed image with overlay headline
+   ------------------------------------------------------------ */
+.hero {
+  position: relative;
+  width: 100%;
+  /* Sits flush under the site header; height balances "above the fold"
+     across desktop + mobile without going taller than the viewport. */
+  min-height: clamp(420px, 72vh, 760px);
+  background: var(--color-ink);     /* fallback / letterbox */
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+/* Gradient scrim improves contrast for white text on busy images */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(31, 42, 68, 0.10) 0%,
+    rgba(31, 42, 68, 0.00) 35%,
+    rgba(31, 42, 68, 0.45) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  min-height: inherit;
+  display: flex;
+  align-items: flex-end;
+  /* Leave breathing room at the bottom of the hero */
+  padding-block: clamp(3rem, 9vw, 6rem);
+}
+
+.hero__title {
+  color: var(--color-paper);
+  font-family: var(--font-display);
+  font-weight: var(--fw-display-medium);   /* 500 — medium balance */
+  font-size: clamp(2.6rem, 6.4vw, 5.8rem);
+  line-height: 0.98;
+  letter-spacing: var(--tr-tight);
+  text-wrap: balance;
+  max-width: 18ch;
+  /* Soft shadow uses Deep Indigo for warm-cool consistency on photo */
+  text-shadow: 0 2px 30px rgba(31, 42, 68, 0.35);
+}
+.hero__title .word-italic {
+  font-style: italic;
+  /* On dark hero, italic stays in paper — clay-on-photo gets muddy. */
+  color: var(--color-paper);
+  font-weight: var(--fw-display-medium);
+}
+
+.hero__credit {
+  position: absolute;
+  bottom: 0.9rem;
+  right: clamp(1rem, 4vw, 2rem);
+  z-index: 2;
+  font-size: 0.7rem;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: rgba(247, 245, 240, 0.65);
+  font-weight: 400;
+}
+
+/* ------------------------------------------------------------
+   Hero intro — the "Our Purpose" paragraph that follows the hero
+   ------------------------------------------------------------ */
+.hero-intro {
+  background: var(--color-paper);
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+.hero-intro__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+@media (min-width: 820px) {
+  .hero-intro__grid { grid-template-columns: 1fr 2.2fr; gap: 5rem; }
+}
+.hero-intro__label {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  color: var(--color-ink);
+}
+.hero-intro__body {
+  font-size: var(--fs-body-lg);
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+  max-width: 62ch;
+}
+.hero-intro__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.hero-intro__rule {
+  height: 1px;
+  background: var(--color-rule);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+/* Decorative ticker beneath hero */
+.marquee {
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+  background: var(--color-paper);
+  overflow: hidden;
+  padding-block: 1.25rem;
+}
+.marquee__track {
+  display: flex;
+  gap: 3.5rem;
+  white-space: nowrap;
+  animation: marquee 50s linear infinite;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--color-ink-soft);
+}
+.marquee__track span { display: inline-flex; align-items: center; gap: 3.5rem; }
+.marquee__track span::after {
+  content: "✦";
+  color: var(--color-clay);
+  font-style: normal;
+  font-size: 0.7rem;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* ------------------------------------------------------------
+   Editorial section — "Why Art?" / manifesto-like
+   ------------------------------------------------------------ */
+.editorial {
+  padding-block: clamp(5rem, 10vw, 9rem);
+  background: var(--color-cream);
+  position: relative;
+}
+
+.editorial__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+@media (min-width: 900px) {
+  .editorial__grid {
+    grid-template-columns: 1fr 1.5fr;
+    gap: clamp(3rem, 7vw, 6rem);
+  }
+}
+
+.editorial__title {
+  font-size: clamp(2.25rem, 4.5vw, 4rem);
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.editorial__body p {
+  font-size: var(--fs-body-lg);
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+.editorial__body p:first-child { color: var(--color-ink); font-size: 1.35rem; }
+.editorial__body .pull {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  line-height: 1.2;
+  color: var(--color-ink);
+  border-left: 2px solid var(--color-clay);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  max-width: 28ch;
+}
+
+/* ------------------------------------------------------------
+   Three Promises cards (CTA block)
+   ------------------------------------------------------------ */
+.promises {
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+.promises__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+.promises__head h2 { font-size: var(--fs-h2); max-width: 16ch; line-height: 1; }
+
+.promises__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 700px) { .promises__grid { grid-template-columns: repeat(3, 1fr); } }
+
+.promise-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px;
+  padding: 2rem;
+  background: var(--color-cream);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+  overflow: hidden;
+}
+.promise-card:hover {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  transform: translateY(-4px);
+}
+.promise-card:hover h3 { color: var(--color-paper); }
+.promise-card:hover .promise-card__num { color: var(--color-clay); }
+.promise-card:hover p { color: rgba(247, 245, 240, 0.78); }
+
+.promise-card__num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-clay);
+  transition: color var(--dur-base);
+}
+.promise-card h3 {
+  font-size: 1.875rem;
+  line-height: 1.05;
+  margin: 0.5rem 0 1rem;
+  transition: color var(--dur-base);
+}
+.promise-card p {
+  font-size: 0.975rem;
+  color: var(--color-ink-soft);
+  line-height: 1.55;
+  margin-bottom: 0;
+  transition: color var(--dur-base);
+}
+.promise-card__arrow {
+  margin-top: 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ------------------------------------------------------------
+   Image collage strip (under editorial section on existing site)
+   ------------------------------------------------------------ */
+.collage {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  padding-block: 0;
+}
+@media (max-width: 700px) { .collage { grid-template-columns: repeat(2, 1fr); } }
+.collage figure {
+  margin: 0;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+.collage img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.collage figure:hover img { transform: scale(1.05); }
+
+/* ------------------------------------------------------------
+   Make a Difference / split feature
+   ------------------------------------------------------------ */
+.feature-split {
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+.feature-split__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .feature-split__grid {
+    grid-template-columns: 1fr 1.3fr;
+    gap: clamp(3rem, 6vw, 5rem);
+  }
+}
+.feature-split__image {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.feature-split__image img { width: 100%; height: 100%; object-fit: cover; }
+.feature-split__copy h2 { margin-bottom: 1.25rem; max-width: 12ch; }
+.feature-split__list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+  border-top: 1px solid var(--color-rule-soft);
+}
+.feature-split__list li {
+  border-bottom: 1px solid var(--color-rule-soft);
+}
+.feature-split__list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 0;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  transition: color var(--dur-fast), padding var(--dur-base);
+}
+.feature-split__list a small {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--color-ink-muted);
+  font-weight: 400;
+}
+.feature-split__list a:hover {
+  color: var(--color-clay);
+  padding-left: 1rem;
+}
+.feature-split__list a:hover small { color: var(--color-clay); }
+
+/* ------------------------------------------------------------
+   Publications / Card grid
+   ------------------------------------------------------------ */
+.pub-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 700px) { .pub-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .pub-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.pub-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  group: card;
+}
+.pub-card__media {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  background: var(--color-cream);
+}
+.pub-card__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.pub-card:hover .pub-card__media img { transform: scale(1.04); }
+.pub-card__media--clay { background: var(--color-clay); display: flex; align-items: flex-end; padding: 1.5rem; color: var(--color-paper); }
+.pub-card__media--clay::before {
+  content: "↗";
+  position: absolute;
+  top: 1.25rem; right: 1.25rem;
+  font-size: 1.5rem;
+}
+.pub-card__tag {
+  font-size: 0.75rem;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--color-clay);
+  font-weight: 500;
+}
+.pub-card h3 {
+  font-size: 1.375rem;
+  line-height: 1.2;
+  margin: 0;
+}
+.pub-card p {
+  font-size: 0.925rem;
+  color: var(--color-ink-soft);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------
+   Page hero (interior pages)
+   ------------------------------------------------------------ */
+.page-hero {
+  padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 5vw, 5rem);
+}
+.page-hero__crumbs {
+  font-size: 0.8rem;
+  color: var(--color-ink-muted);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.page-hero__crumbs a { color: inherit; }
+.page-hero__crumbs a:hover { color: var(--color-clay); }
+.page-hero__crumbs span { margin: 0 0.5rem; opacity: 0.5; }
+.page-hero h1 {
+  font-size: clamp(2.75rem, 6vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  max-width: 14ch;
+}
+.page-hero h1 .word-italic {
+  font-style: italic;
+  color: var(--color-clay);
+}
+.page-hero__lede {
+  font-size: var(--fs-body-lg);
+  color: var(--color-ink-soft);
+  line-height: 1.55;
+  max-width: 52ch;
+  margin-top: 1.75rem;
+}
+
+/* ------------------------------------------------------------
+   Content stacks (long-form article-like pages)
+   ------------------------------------------------------------ */
+.stack > * + * { margin-top: clamp(2.5rem, 4vw, 4rem); }
+
+.split-text {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media (min-width: 900px) {
+  .split-text {
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(2rem, 5vw, 5rem);
+  }
+}
+.split-text__label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: var(--tr-wider);
+  text-transform: uppercase;
+  color: var(--color-clay);
+  font-weight: 500;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-ink);
+  align-self: start;
+}
+.split-text__body h2 {
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  margin-bottom: 1.25rem;
+  max-width: 18ch;
+}
+
+/* ------------------------------------------------------------
+   Initiative / event card variants
+   ------------------------------------------------------------ */
+.init-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+@media (min-width: 800px) { .init-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.init-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+.init-card__media {
+  aspect-ratio: 4 / 3;
+  background: var(--color-cream);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.init-card__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.init-card:hover .init-card__media img { transform: scale(1.04); }
+.init-card__tag {
+  font-size: 0.7rem;
+  letter-spacing: var(--tr-wider);
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-clay);
+  margin-bottom: 0.75rem;
+}
+.init-card h3 {
+  font-size: 1.875rem;
+  line-height: 1.1;
+  margin: 0 0 0.85rem;
+}
+.init-card p {
+  font-size: 0.975rem;
+  color: var(--color-ink-soft);
+  line-height: 1.55;
+  margin-bottom: 1rem;
+}
+
+/* ------------------------------------------------------------
+   Team grid
+   ------------------------------------------------------------ */
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media (min-width: 700px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.team-card { padding-top: 1.25rem; border-top: 1px solid var(--color-ink); }
+.team-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
+}
+.team-card .role {
+  font-size: 0.8rem;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--color-clay);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+.team-card p {
+  font-size: 0.925rem;
+  color: var(--color-ink-soft);
+  line-height: 1.55;
+}
+
+/* ------------------------------------------------------------
+   What-we-do / 4 pillars
+   ------------------------------------------------------------ */
+.pillars {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--color-rule);
+}
+.pillar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding-block: 3rem;
+  border-bottom: 1px solid var(--color-rule);
+  position: relative;
+}
+@media (min-width: 800px) {
+  .pillar {
+    grid-template-columns: 0.6fr 0.4fr 1.5fr 0.3fr;
+    gap: 3rem;
+    align-items: start;
+  }
+}
+.pillar__num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--color-clay);
+}
+.pillar__title {
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+.pillar__body {
+  color: var(--color-ink-soft);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+.pillar__body ul {
+  margin: 1rem 0 1.5rem;
+  padding-left: 0;
+  list-style: none;
+}
+.pillar__body ul li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-rule-hair);
+  padding-left: 1.25rem;
+  position: relative;
+}
+.pillar__body ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-clay);
+}
+.pillar__cta {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.pillar__cta a {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  white-space: nowrap;
+}
+.pillar__cta a:hover { color: var(--color-clay); }
+
+/* ------------------------------------------------------------
+   Promise principles (people / planet / performance)
+   ------------------------------------------------------------ */
+.principles {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+@media (min-width: 800px) { .principles { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+
+.principle {
+  padding: 2rem;
+  background: var(--color-paper);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-rule-hair);
+}
+.principle__icon {
+  width: 56px; height: 56px;
+  background: var(--color-cream);
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--color-clay);
+}
+.principle h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.principle p {
+  font-size: 0.95rem;
+  color: var(--color-ink-soft);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------
+   Manifesto block
+   ------------------------------------------------------------ */
+.manifesto {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding-block: clamp(5rem, 10vw, 9rem);
+  text-align: center;
+}
+.manifesto__mark {
+  width: 72px; height: auto;
+  margin: 0 auto 2.5rem;
+  opacity: 0.95;
+}
+.manifesto h2 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  color: var(--color-paper);
+  margin-bottom: 0;
+  letter-spacing: -0.02em;
+}
+.manifesto p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  line-height: 1.4;
+  color: rgba(247, 245, 240, 0.78);
+  max-width: 32ch;
+  margin: 1.5rem auto;
+}
+.manifesto__sig {
+  font-family: var(--font-sans);
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: var(--tr-wider);
+  font-size: 0.8rem;
+  color: var(--color-clay);
+  margin-top: 2.5rem;
+}
+
+/* ------------------------------------------------------------
+   Donate panel (compact widget style)
+   ------------------------------------------------------------ */
+.donate-panel {
+  background: var(--color-paper);
+  border: 1px solid var(--color-rule-hair);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  max-width: 460px;
+  margin-inline: auto;
+  text-align: center;
+  box-shadow: 0 24px 48px -24px rgba(31, 42, 68, 0.15);
+}
+.donate-panel__mark { width: 56px; margin: 0 auto 1rem; }
+.donate-panel h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.donate-panel p {
+  font-size: 0.9rem;
+  color: var(--color-ink-soft);
+  margin-bottom: 1.5rem;
+}
+.donate-panel__amount {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.donate-panel__currency {
+  font-size: 0.8rem;
+  letter-spacing: var(--tr-wide);
+  color: var(--color-ink-muted);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.donate-panel__btns { display: flex; flex-direction: column; gap: 0.5rem; }
+.donate-panel__btns .btn { width: 100%; justify-content: center; }
+.donate-panel__btn-pp {
+  background: #FFC439;
+  color: var(--color-ink);
+  border-radius: var(--radius-pill);
+  padding: 0.85rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-style: italic;
+}
+.donate-panel__btn-venmo {
+  background: #3D95CE;
+  color: var(--color-paper);
+  border-radius: var(--radius-pill);
+  padding: 0.85rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ------------------------------------------------------------
+   Forms (contact)
+   ------------------------------------------------------------ */
+.form-group { margin-bottom: 1.25rem; }
+.form-label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-rule);
+  padding: 0.85rem 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-ink);
+  border-radius: 0;
+}
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-bottom-color: var(--color-clay);
+}
+.form-textarea { resize: vertical; min-height: 120px; }
+
+.tag-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.tag-option {
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  cursor: pointer;
+  background: transparent;
+  transition: all var(--dur-fast);
+  color: var(--color-ink);
+}
+.tag-option:hover { border-color: var(--color-clay); color: var(--color-clay); }
+.tag-option.is-active { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
+
+/* ------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------ */
+.site-footer {
+  background: var(--color-cream);
+  padding-block: 5rem 2rem;
+  position: relative;
+}
+.site-footer__top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--color-rule-soft);
+}
+@media (min-width: 900px) {
+  .site-footer__top {
+    grid-template-columns: 1.5fr repeat(4, 1fr);
+    gap: 2rem;
+  }
+}
+.site-footer__brand h4 {
+  font-size: 1.5rem;
+  margin: 1.5rem 0 0.75rem;
+  max-width: 22ch;
+  line-height: 1.2;
+}
+.site-footer__brand img { width: 140px; }
+.site-footer__col h5 {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: var(--tr-wider);
+  text-transform: uppercase;
+  color: var(--color-clay);
+  margin-bottom: 1.25rem;
+}
+.site-footer__col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.site-footer__col a {
+  font-size: 0.925rem;
+  color: var(--color-ink);
+  transition: color var(--dur-fast);
+}
+.site-footer__col a:hover { color: var(--color-clay); }
+.site-footer__newsletter input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-ink);
+  padding: 0.5rem 0;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+.site-footer__newsletter input::placeholder { color: var(--color-ink-muted); }
+.site-footer__social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+.site-footer__social a {
+  width: 40px; height: 40px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--dur-fast);
+}
+.site-footer__social a:hover { background: var(--color-clay); }
+
+.site-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  color: var(--color-ink-muted);
+}
+.site-footer__bottom a:hover { color: var(--color-clay); }
+.site-footer__legal { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+
+/* Decorative super-large wordmark in footer */
+.site-footer__wordmark {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(4rem, 14vw, 14rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--color-ink);
+  opacity: 0.09;
+  margin-top: 2rem;
+  margin-bottom: -1rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* ------------------------------------------------------------
+   Stagger reveal (page load)
+   ------------------------------------------------------------ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: reveal 0.9s var(--ease-out) forwards;
+}
+.reveal:nth-child(1) { animation-delay: 0.05s; }
+.reveal:nth-child(2) { animation-delay: 0.15s; }
+.reveal:nth-child(3) { animation-delay: 0.25s; }
+.reveal:nth-child(4) { animation-delay: 0.35s; }
+.reveal:nth-child(5) { animation-delay: 0.45s; }
+
+@keyframes reveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* On-scroll reveal */
+.in-view {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.in-view.is-visible { opacity: 1; transform: translateY(0); }
+/* ============================================================
+   Components with no counterpart in the static prototype.
+   ------------------------------------------------------------
+   The prototype has no initiative *detail* page — it only mocks the
+   initiatives index — so single-initiative.html needs a couple of components
+   that styles.css never defined. Everything here is built from the same
+   tokens as the ported CSS, so it inherits the theme.json presets.
+
+   Anything that DOES exist in the prototype belongs in styles.css upstream,
+   not here.
+   ============================================================ */
+
+/* Initiative detail — image + meta aside beside the body copy. */
+.init-single__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .init-single__grid {
+    grid-template-columns: minmax(280px, 380px) 1fr;
+    gap: var(--space-8);
+  }
+  /* Meta travels with the reader on long entries. */
+  .init-single__aside {
+    position: sticky;
+    top: var(--space-7);
+  }
+}
+
+.init-single__aside img {
+  border-radius: var(--radius-md);
+  width: 100%;
+}
+
+/* Status / Since / Where / Partners. Rows are omitted when the field is empty,
+   so this must not rely on a fixed row count. */
+.init-meta {
+  margin: var(--space-5) 0 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem var(--space-4);
+  font-size: var(--fs-body-sm);
+}
+
+.init-meta dt {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: var(--tr-wider);
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-ink-muted);
+  padding-top: 0.15em;
+}
+
+.init-meta dd {
+  margin: 0;
+  color: var(--color-ink-soft);
+  line-height: var(--lh-base);
+}
+
+/* The initiatives index links its card titles; the prototype's cards were inert
+   mockups, so styles.css never covered the anchor state. */
+.init-card h3 a,
+.init-card__media a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.init-card h3 a:hover {
+  color: var(--color-clay);
+}
+/* ------------------------------------------------------------
+   No-JS safety net.
+   .in-view starts at opacity:0 and only main.js adds .is-visible, so without
+   JS every revealed section would be invisible — not degraded, gone. The
+   prototype has this hazard too; it matters more here because this is the
+   real site. `scripting: none` covers JS-disabled browsers.
+   ------------------------------------------------------------ */
+@media (scripting: none) {
+  .in-view { opacity: 1; transform: none; }
+  .reveal  { opacity: 1; transform: none; animation: none; }
+}
