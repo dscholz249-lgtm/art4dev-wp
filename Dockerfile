@@ -17,11 +17,14 @@ RUN set -eux; \
 	curl -fsSL -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
 	chmod +x /usr/local/bin/wp
 
-# mod_php requires the prefork MPM. This base image ends up with both prefork and event
-# enabled, so Apache aborts on boot with "AH00534: More than one MPM loaded" and crash-loops.
-# Force exactly one MPM.
-RUN a2dismod mpm_event mpm_worker 2>/dev/null || true; \
-	a2enmod mpm_prefork 2>/dev/null || true
+# mod_php requires the prefork MPM. This base image ends up with more than one MPM enabled,
+# so Apache aborts on boot with "AH00534: More than one MPM loaded" and crash-loops.
+# Bulletproof fix: remove EVERY mpm symlink, then enable exactly prefork. `apache2ctl -M`
+# then prints the loaded MPM into the build log so we can confirm there's only one.
+RUN set -eux; \
+	rm -f /etc/apache2/mods-enabled/mpm_*.load /etc/apache2/mods-enabled/mpm_*.conf; \
+	a2enmod mpm_prefork; \
+	apache2ctl -M 2>/dev/null | grep -i mpm
 
 # Bake our content into /usr/src/wordpress — the stock entrypoint copies this into
 # /var/www/html together with core, so a non-empty wp-content doesn't block that copy.

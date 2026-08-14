@@ -12,6 +12,10 @@
 #
 set -euo pipefail
 
+# Build marker — if this line is absent from the deploy logs, Railway is running a stale
+# image and didn't rebuild from the latest commit.
+echo '[railway-entrypoint] build: mpm-fix-2'
+
 # --- 1. Apache listens on Railway's $PORT (defaults to 80 for local runs) ---------
 : "${PORT:=80}"
 sed -ri "s!^Listen 80\$!Listen ${PORT}!" /etc/apache2/ports.conf || true
