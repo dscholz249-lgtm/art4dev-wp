@@ -14,17 +14,24 @@ set -euo pipefail
 
 # Build marker — if this line is absent from the deploy logs, Railway is running a stale
 # image and didn't rebuild from the latest commit.
-echo '[railway-entrypoint] build: mpm-fix-3'
+echo '[railway-entrypoint] build: mpm-fix-4'
+
+# Diagnostic: show every MPM the Apache config would load. If more than one line
+# appears here, that's the source of AH00534 and tells us exactly which file to fix.
+echo '[railway-entrypoint] MPM modules in mods-enabled:'
+ls -1 /etc/apache2/mods-enabled/ 2>/dev/null | grep -i mpm | sed 's/^/  /' || echo '  (none)'
+echo '[railway-entrypoint] any mpm LoadModule elsewhere in the config:'
+grep -rniE 'LoadModule .*mpm' /etc/apache2/ 2>/dev/null | sed 's/^/  /' || echo '  (none)'
 
 # --- 1. Apache listens on Railway's $PORT (defaults to 80 for local runs) ---------
 : "${PORT:=80}"
 sed -ri "s!^Listen 80\$!Listen ${PORT}!" /etc/apache2/ports.conf || true
 sed -ri "s!:80>!:${PORT}>!" /etc/apache2/sites-enabled/000-default.conf || true
 
-# --- 2. First-boot database seed (backgrounded; no-op once installed) --------------
+# --- 2. First-boot database seed (backgrounded; no-op once seeded) -----------------
 # Runs as a detached child so it can wait for the stock entrypoint (exec'd below) to
-# write wp-config.php and copy core, then import the seed while Apache comes up. The
-# Railway MySQL volume is persistent, so this branch only ever fires on the first deploy.
+# write wp-config.php, then seed via PHP mysqli while Apache comes up. The Railway MySQL
+# volume is persistent, so the import only ever happens on the first deploy.
 seed_database() {
 	local WP="wp --path=/var/www/html --allow-root"
 
@@ -35,24 +42,22 @@ seed_database() {
 		[ "$i" -gt 90 ] && { echo '[seed] wp-config.php never appeared — giving up.'; return 0; }
 	done
 
-	# Wait for the database to accept connections.
-	i=0
-	until $WP db check >/dev/null 2>&1; do
-		sleep 2; i=$((i + 1))
-		[ "$i" -gt 90 ] && { echo '[seed] database never became reachable — giving up.'; return 0; }
-	done
+	# import.php waits for the DB, then imports only if the database is empty.
+	php /seed/import.php
+	local rc=$?
 
-	if $WP core is-installed >/dev/null 2>&1; then
-		echo '[seed] WordPress already installed — leaving the database as-is.'
+	if [ "$rc" -eq 5 ]; then
+		echo '[seed] Database already seeded — nothing to do.'
+		return 0
+	fi
+	if [ "$rc" -ne 0 ]; then
+		echo "[seed] Seeder exited ${rc} — leaving database as-is."
 		return 0
 	fi
 
-	echo '[seed] Fresh database — importing seed…'
-	$WP db import /seed/database.sql
-
-	# The seed carries the local dev domain. The mu-plugin already forces home/siteurl
-	# to the Railway domain at runtime, but rewrite any absolute references baked into
-	# post content / GUIDs so nothing points back at art4development.local.
+	# Freshly imported. The seed carries the local dev domain; the mu-plugin already forces
+	# home/siteurl to the Railway domain at runtime, but rewrite absolute references baked
+	# into post content / GUIDs so nothing points back at art4development.local.
 	local domain="${RAILWAY_PUBLIC_DOMAIN:-localhost}"
 	echo "[seed] Rewriting art4development.local -> ${domain}"
 	$WP search-replace 'http://art4development.local' "https://${domain}" --all-tables --report-changed-only >/dev/null 2>&1 || true
