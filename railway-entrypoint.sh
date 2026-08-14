@@ -14,7 +14,7 @@ set -euo pipefail
 
 # Build marker — if this line is absent from the deploy logs, Railway is running a stale
 # image and didn't rebuild from the latest commit.
-echo '[railway-entrypoint] build: mpm-fix-6'
+echo '[railway-entrypoint] build: v7-admin-override'
 
 # --- 0. Force a single MPM (prefork) at RUNTIME --------------------------------------
 # The base image ships with both mpm_event and mpm_prefork enabled -> Apache aborts with
@@ -45,29 +45,46 @@ seed_database() {
 		[ "$i" -gt 90 ] && { echo '[seed] wp-config.php never appeared — giving up.'; return 0; }
 	done
 
-	# import.php waits for the DB, then imports only if the database is empty.
+	# import.php: 0 = freshly imported, 5 = already seeded, anything else = failure.
 	php /seed/import.php
 	local rc=$?
 
-	if [ "$rc" -eq 5 ]; then
-		echo '[seed] Database already seeded — nothing to do.'
-		return 0
-	fi
-	if [ "$rc" -ne 0 ]; then
-		echo "[seed] Seeder exited ${rc} — leaving database as-is."
+	if [ "$rc" -ne 0 ] && [ "$rc" -ne 5 ]; then
+		echo "[seed] Seeder exited ${rc} — leaving database as-is, skipping admin setup."
 		return 0
 	fi
 
-	# Freshly imported. The seed carries the local dev domain; the mu-plugin already forces
-	# home/siteurl to the Railway domain at runtime, but rewrite absolute references baked
-	# into post content / GUIDs so nothing points back at art4development.local.
-	local domain="${RAILWAY_PUBLIC_DOMAIN:-localhost}"
-	echo "[seed] Rewriting art4development.local -> ${domain}"
-	$WP search-replace 'http://art4development.local' "https://${domain}" --all-tables --report-changed-only >/dev/null 2>&1 || true
-	$WP search-replace 'art4development.local' "${domain}" --all-tables --report-changed-only >/dev/null 2>&1 || true
-	$WP cache flush >/dev/null 2>&1 || true
-	$WP rewrite flush >/dev/null 2>&1 || true
-	echo '[seed] Done.'
+	if [ "$rc" -eq 0 ]; then
+		# Freshly imported. The mu-plugin already forces home/siteurl to the Railway domain
+		# at runtime; also rewrite absolute references baked into post content / GUIDs so
+		# nothing points back at art4development.local.
+		local domain="${RAILWAY_PUBLIC_DOMAIN:-localhost}"
+		echo "[seed] Rewriting art4development.local -> ${domain}"
+		$WP search-replace 'http://art4development.local' "https://${domain}" --all-tables --report-changed-only >/dev/null 2>&1 || true
+		$WP search-replace 'art4development.local' "${domain}" --all-tables --report-changed-only >/dev/null 2>&1 || true
+		$WP cache flush >/dev/null 2>&1 || true
+		$WP rewrite flush >/dev/null 2>&1 || true
+		echo '[seed] Done.'
+	else
+		echo '[seed] Database already seeded — nothing to import.'
+	fi
+
+	# --- Optional admin credential override (Railway env) ---------------------------
+	# Set WP_ADMIN_PASSWORD in Railway (and optionally WP_ADMIN_USER / WP_ADMIN_EMAIL) to
+	# (re)set the admin login on boot — handy if the seeded password is lost. The seeded
+	# admin is 'art4dev-admin'. Runs on every boot while the var is set, so remove it again
+	# once you're logged in.
+	if [ -n "${WP_ADMIN_PASSWORD:-}" ]; then
+		local admin_user="${WP_ADMIN_USER:-art4dev-admin}"
+		if wp --path=/var/www/html --allow-root user get "$admin_user" --field=ID >/dev/null 2>&1; then
+			wp --path=/var/www/html --allow-root user update "$admin_user" --user_pass="$WP_ADMIN_PASSWORD" >/dev/null 2>&1 \
+				&& echo "[admin] password reset for existing administrator '${admin_user}'"
+			[ -n "${WP_ADMIN_EMAIL:-}" ] && wp --path=/var/www/html --allow-root user update "$admin_user" --user_email="$WP_ADMIN_EMAIL" >/dev/null 2>&1 || true
+		else
+			wp --path=/var/www/html --allow-root user create "$admin_user" "${WP_ADMIN_EMAIL:-admin@example.com}" --role=administrator --user_pass="$WP_ADMIN_PASSWORD" >/dev/null 2>&1 \
+				&& echo "[admin] created administrator '${admin_user}'"
+		fi
+	fi
 }
 seed_database &
 

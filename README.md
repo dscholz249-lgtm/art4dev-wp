@@ -65,9 +65,20 @@ First boot: the entrypoint waits for the DB, imports `seed/database.sql`, rewrit
 `art4development.local` → your Railway domain, and flushes rewrites. Watch the deploy **Logs** for
 `[seed] Done.` Then open the generated URL — you should see the full site.
 
-**Admin:** the local admin account came over in the seed. Log in at `/wp-admin/` with the same
-username/password you use on the LocalWP site. (Change the password once you're in — this is a
-public URL now.)
+**Admin:** the local admin account came over in the seed — username **`art4dev-admin`**. Log in
+at `/wp-admin/` with the password from your LocalWP site.
+
+**Lost the password?** Set it from Railway. On the WordPress service → Variables, add:
+
+| Variable | Value |
+|----------|-------|
+| `WP_ADMIN_PASSWORD` | *(a new password you choose)* |
+| `WP_ADMIN_USER` | `art4dev-admin` *(optional — this is the default)* |
+| `WP_ADMIN_EMAIL` | *(optional — updates the admin email too)* |
+
+Redeploy. On boot the container resets `art4dev-admin`'s password to that value (watch the logs
+for `[admin] password reset for existing administrator 'art4dev-admin'`). Log in, then **delete
+the `WP_ADMIN_PASSWORD` variable** — it re-applies on every boot while it's set.
 
 ## Updating later
 
