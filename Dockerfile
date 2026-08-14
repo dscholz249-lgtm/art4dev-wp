@@ -9,18 +9,14 @@
 # the latest core; WordPress runs its own minor DB upgrade if the seed's schema is older.
 FROM wordpress:php8.2-apache
 
-# wp-cli for the first-boot seed's search-replace / flush (these use mysqli, no mysql binary).
-# Deliberately NOT installing default-mysql-client: apt pulls Debian's apache2 meta-package
-# with it, which re-enables mpm_event on top of the image's mpm_prefork and makes Apache abort
-# with "AH00534: More than one MPM loaded". The DB import is done in PHP (seed/import.php).
-RUN set -eux; \
-	apt-get update; \
-	apt-get install -y --no-install-recommends curl ca-certificates; \
-	rm -rf /var/lib/apt/lists/*; \
-	curl -fsSL -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
-	chmod +x /usr/local/bin/wp
+# wp-cli, bundled directly (used by the seed's search-replace / flush, which run via mysqli —
+# no mysql binary needed). Bundling the phar avoids any apt/curl/network during the build: that
+# step was both flaky AND the thing that pulled Debian's apache2 meta-package, which re-enabled
+# a second MPM and crashed Apache. No apt in this image at all now.
+COPY bin/wp-cli.phar /usr/local/bin/wp
+RUN chmod +x /usr/local/bin/wp
 
-# Belt-and-suspenders: ensure exactly one MPM (prefork) even if something re-enabled another.
+# Belt-and-suspenders: ensure exactly one MPM (prefork) in case the base image ships two.
 RUN rm -f /etc/apache2/mods-enabled/mpm_*.load /etc/apache2/mods-enabled/mpm_*.conf \
 	&& a2enmod mpm_prefork \
 	&& { echo "MPM modules enabled after fix:"; ls -1 /etc/apache2/mods-enabled/ | grep -i mpm || true; }

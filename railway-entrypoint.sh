@@ -14,7 +14,7 @@ set -euo pipefail
 
 # Build marker — if this line is absent from the deploy logs, Railway is running a stale
 # image and didn't rebuild from the latest commit.
-echo '[railway-entrypoint] build: mpm-fix-4'
+echo '[railway-entrypoint] build: mpm-fix-5'
 
 # Diagnostic: show every MPM the Apache config would load. If more than one line
 # appears here, that's the source of AH00534 and tells us exactly which file to fix.
