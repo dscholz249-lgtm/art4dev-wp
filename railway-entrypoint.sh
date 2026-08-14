@@ -14,7 +14,7 @@ set -euo pipefail
 
 # Build marker — if this line is absent from the deploy logs, Railway is running a stale
 # image and didn't rebuild from the latest commit.
-echo '[railway-entrypoint] build: v7-admin-override'
+echo '[railway-entrypoint] build: v8-admin-reset-fix'
 
 # --- 0. Force a single MPM (prefork) at RUNTIME --------------------------------------
 # The base image ships with both mpm_event and mpm_prefork enabled -> Apache aborts with
@@ -46,8 +46,11 @@ seed_database() {
 	done
 
 	# import.php: 0 = freshly imported, 5 = already seeded, anything else = failure.
-	php /seed/import.php
-	local rc=$?
+	# Capture the exit code WITHOUT tripping `set -e` — exit 5 (already seeded) is the normal
+	# steady state, and a bare `php …` would abort the whole function there, so the admin
+	# override below never ran on any boot after the first.
+	local rc=0
+	php /seed/import.php || rc=$?
 
 	if [ "$rc" -ne 0 ] && [ "$rc" -ne 5 ]; then
 		echo "[seed] Seeder exited ${rc} — leaving database as-is, skipping admin setup."
@@ -77,13 +80,23 @@ seed_database() {
 	if [ -n "${WP_ADMIN_PASSWORD:-}" ]; then
 		local admin_user="${WP_ADMIN_USER:-art4dev-admin}"
 		if wp --path=/var/www/html --allow-root user get "$admin_user" --field=ID >/dev/null 2>&1; then
-			wp --path=/var/www/html --allow-root user update "$admin_user" --user_pass="$WP_ADMIN_PASSWORD" >/dev/null 2>&1 \
-				&& echo "[admin] password reset for existing administrator '${admin_user}'"
-			[ -n "${WP_ADMIN_EMAIL:-}" ] && wp --path=/var/www/html --allow-root user update "$admin_user" --user_email="$WP_ADMIN_EMAIL" >/dev/null 2>&1 || true
+			if wp --path=/var/www/html --allow-root user update "$admin_user" --user_pass="$WP_ADMIN_PASSWORD" >/dev/null 2>&1; then
+				echo "[admin] password reset for existing administrator '${admin_user}'"
+			else
+				echo "[admin] FAILED to reset password for '${admin_user}'"
+			fi
+			if [ -n "${WP_ADMIN_EMAIL:-}" ]; then
+				wp --path=/var/www/html --allow-root user update "$admin_user" --user_email="$WP_ADMIN_EMAIL" >/dev/null 2>&1 || true
+			fi
 		else
-			wp --path=/var/www/html --allow-root user create "$admin_user" "${WP_ADMIN_EMAIL:-admin@example.com}" --role=administrator --user_pass="$WP_ADMIN_PASSWORD" >/dev/null 2>&1 \
-				&& echo "[admin] created administrator '${admin_user}'"
+			if wp --path=/var/www/html --allow-root user create "$admin_user" "${WP_ADMIN_EMAIL:-admin@example.com}" --role=administrator --user_pass="$WP_ADMIN_PASSWORD" >/dev/null 2>&1; then
+				echo "[admin] created administrator '${admin_user}'"
+			else
+				echo "[admin] FAILED to create administrator '${admin_user}'"
+			fi
 		fi
+	else
+		echo "[admin] WP_ADMIN_PASSWORD not set — skipping admin credential override."
 	fi
 }
 seed_database &
