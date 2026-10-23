@@ -14,7 +14,7 @@ set -euo pipefail
 
 # Build marker — if this line is absent from the deploy logs, Railway is running a stale
 # image and didn't rebuild from the latest commit.
-echo '[railway-entrypoint] build: v8-admin-reset-fix'
+echo '[railway-entrypoint] build: v9-upload-64m'
 
 # --- 0. Force a single MPM (prefork) at RUNTIME --------------------------------------
 # The base image ships with both mpm_event and mpm_prefork enabled -> Apache aborts with
