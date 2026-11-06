@@ -32,8 +32,13 @@ COPY seed/import.php /seed/import.php
 COPY wp-content/themes/art4dev                 /usr/src/wordpress/wp-content/themes/art4dev
 COPY wp-content/plugins/advanced-custom-fields /usr/src/wordpress/wp-content/plugins/advanced-custom-fields
 COPY wp-content/plugins/wordpress-importer     /usr/src/wordpress/wp-content/plugins/wordpress-importer
+COPY wp-content/plugins/elementor              /usr/src/wordpress/wp-content/plugins/elementor
 COPY wp-content/uploads                        /usr/src/wordpress/wp-content/uploads
 COPY wp-content/mu-plugins                     /usr/src/wordpress/wp-content/mu-plugins
+
+# Elementor brand kit + section library, applied to the live DB on boot (content-safe, gated).
+COPY seed/elementor-bundle.json       /seed/elementor-bundle.json
+COPY a4gd-elementor-import.php         /usr/local/bin/a4gd-elementor-import.php
 
 # First-boot database seed.
 COPY seed/database.sql /seed/database.sql

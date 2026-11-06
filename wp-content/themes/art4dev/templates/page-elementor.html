@@ -1,0 +1,12 @@
+<!-- wp:template-part {"slug":"header","tagName":"header","area":"header"} /-->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"default"}} -->
+<main class="wp-block-group">
+	<!-- Full-width post content: Elementor renders its builder output through the_content()
+	     here, so Elementor pages get our FSE header/footer without the prose/page-hero wrapper
+	     that templates/page.html applies to block-edited pages. -->
+	<!-- wp:post-content {"layout":{"type":"default"}} /-->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer","area":"footer"} /-->

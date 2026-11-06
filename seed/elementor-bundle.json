@@ -1,0 +1,553 @@
+{
+    "version": "1",
+    "kit_settings": {
+        "system_colors": [
+            {
+                "_id": "primary",
+                "title": "Burnt Ochre (Primary)",
+                "color": "#C65A1E"
+            },
+            {
+                "_id": "secondary",
+                "title": "Deep Indigo (Ink)",
+                "color": "#1F2A44"
+            },
+            {
+                "_id": "text",
+                "title": "Ink Soft (Body)",
+                "color": "#3A4660"
+            },
+            {
+                "_id": "accent",
+                "title": "Saffron (Accent)",
+                "color": "#E39A2E"
+            }
+        ],
+        "custom_colors": [
+            {
+                "_id": "a4teal",
+                "title": "Deep Teal",
+                "color": "#0F4C5C"
+            },
+            {
+                "_id": "a4sage",
+                "title": "Sage Green",
+                "color": "#8AA39B"
+            },
+            {
+                "_id": "a4paper",
+                "title": "Bone / Paper",
+                "color": "#F7F5F0"
+            },
+            {
+                "_id": "a4cream",
+                "title": "Cream",
+                "color": "#EFEBE2"
+            },
+            {
+                "_id": "a4clayhover",
+                "title": "Clay Hover",
+                "color": "#A84915"
+            },
+            {
+                "_id": "a4inkmuted",
+                "title": "Ink Muted",
+                "color": "#6A7488"
+            }
+        ],
+        "system_typography": [
+            {
+                "_id": "primary",
+                "title": "Figtree Display",
+                "typography_typography": "custom",
+                "typography_font_family": "Figtree",
+                "typography_font_weight": "500"
+            },
+            {
+                "_id": "secondary",
+                "title": "Figtree Semibold",
+                "typography_typography": "custom",
+                "typography_font_family": "Figtree",
+                "typography_font_weight": "600"
+            },
+            {
+                "_id": "text",
+                "title": "Open Sans Body",
+                "typography_typography": "custom",
+                "typography_font_family": "Open Sans",
+                "typography_font_weight": "400"
+            },
+            {
+                "_id": "accent",
+                "title": "Figtree Accent",
+                "typography_typography": "custom",
+                "typography_font_family": "Figtree",
+                "typography_font_weight": "600"
+            }
+        ],
+        "custom_typography": [
+            {
+                "_id": "a4eyebrow",
+                "title": "Eyebrow (Figtree caps)",
+                "typography_typography": "custom",
+                "typography_font_family": "Figtree",
+                "typography_font_weight": "600",
+                "typography_text_transform": "uppercase",
+                "typography_letter_spacing": {
+                    "unit": "em",
+                    "size": 0.16
+                }
+            }
+        ],
+        "body_typography_typography": "custom",
+        "body_typography_font_family": "Open Sans",
+        "body_typography_font_weight": "400",
+        "container_width": {
+            "unit": "px",
+            "size": 1320
+        }
+    },
+    "templates": [
+        {
+            "slug": "a4gd-why-art",
+            "title": "A4GD — Why Art? (editorial)",
+            "type": "container",
+            "data": [
+                {
+                    "id": "4d94be0",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "padding": {
+                            "unit": "px",
+                            "top": 0,
+                            "right": 0,
+                            "bottom": 0,
+                            "left": 0,
+                            "isLinked": true
+                        }
+                    },
+                    "elements": [
+                        {
+                            "id": "0a4faa1",
+                            "elType": "widget",
+                            "widgetType": "html",
+                            "settings": {
+                                "html": "<section class=\"editorial\">\n      <div class=\"container\">\n        <div class=\"editorial__grid\">\n          <div class=\"in-view\">\n            <span class=\"eyebrow eyebrow--clay\">Why Art?</span>\n            <h2 class=\"editorial__title\" style=\"margin-top:1.5rem;\">\n              Not art as decoration.<br>\n              Art as a <em>catalyst</em>.\n            </h2>\n          </div>\n          <div class=\"editorial__body in-view\">\n            <p>\n              Throughout history, the arts have been one of humanity’s most universal connectors — transcending education levels, socio-political and economic status, age, ethnicity, race, religion, gender, sexual orientation, and culture.\n            </p>\n            <p>\n              At Art4Development.Net, we harness that power with intention: co-creating arts-led and arts-infused programs, and facilitating spaces where people connect, collaborate, and build solutions that matter most to their communities.\n            </p>\n            <div class=\"pull\">\n              From brain development to peacebuilding, urban transformation to economic resilience — the arts nurture individuals, strengthen organizations, and empower communities.\n            </div>\n            <p>\n              Since 2002, we have been connecting artists, development practitioners, researchers, educators, and communities through creative inquiry, participatory programs, and knowledge exchange. We believe lasting, inclusive change happens only when culture sits at the center.\n            </p>\n            <a href=\"pages/our-promise.html\" class=\"link-arrow\" style=\"margin-top:1.5rem;\">Read our promise <span class=\"arrow\">→</span></a>\n          </div>\n        </div>\n      </div>\n    </section>",
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                },
+                                "_padding": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                }
+                            },
+                            "elements": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "a4gd-collage",
+            "title": "A4GD — Collage strip",
+            "type": "container",
+            "data": [
+                {
+                    "id": "6d81342",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "padding": {
+                            "unit": "px",
+                            "top": 0,
+                            "right": 0,
+                            "bottom": 0,
+                            "left": 0,
+                            "isLinked": true
+                        }
+                    },
+                    "elements": [
+                        {
+                            "id": "4d5ac08",
+                            "elType": "widget",
+                            "widgetType": "html",
+                            "settings": {
+                                "html": "<div class=\"collage in-view\" aria-hidden=\"false\">\n      <figure>\n        <img src=\"/wp-content/uploads/2026/07/05-placeholder.jpg\" alt=\"A painter with paint-streaked face concentrating on a canvas.\" loading=\"lazy\">\n      </figure>\n      <figure>\n        <img src=\"/wp-content/uploads/2026/07/05-placeholder.jpg\" alt=\"Large sculptural letters spelling ARTS in a lit interior.\" loading=\"lazy\">\n      </figure>\n      <figure>\n        <img src=\"/wp-content/uploads/2026/07/05-placeholder.jpg\" alt=\"Hands cupping water in a documentary-style portrait.\" loading=\"lazy\">\n      </figure>\n      <figure>\n        <img src=\"/wp-content/uploads/2026/07/05-placeholder.jpg\" alt=\"A vibrant mural-style street artwork.\" loading=\"lazy\">\n      </figure>\n    </div>",
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                },
+                                "_padding": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                }
+                            },
+                            "elements": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "a4gd-promises",
+            "title": "A4GD — Promises grid",
+            "type": "container",
+            "data": [
+                {
+                    "id": "b0f783e",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "padding": {
+                            "unit": "px",
+                            "top": 0,
+                            "right": 0,
+                            "bottom": 0,
+                            "left": 0,
+                            "isLinked": true
+                        }
+                    },
+                    "elements": [
+                        {
+                            "id": "b6a876d",
+                            "elType": "widget",
+                            "widgetType": "html",
+                            "settings": {
+                                "html": "<section class=\"promises section\">\n      <div class=\"container\">\n        <div class=\"promises__head in-view\">\n          <h2>\n            Three ways to engage with the work.\n          </h2>\n          <p class=\"lead\" style=\"margin:0;\">\n            From program design to community action to lasting partnership — find the door that fits.\n          </p>\n        </div>\n\n        <div class=\"promises__grid\">\n          <a href=\"pages/consulting.html\" class=\"promise-card in-view\">\n            <div>\n              <span class=\"promise-card__num\">i.</span>\n              <h3>Explore what we do.</h3>\n              <p>Consulting, placemaking, research, and design programs that put arts and culture to work.</p>\n            </div>\n            <span class=\"promise-card__arrow\">What we do <span class=\"arrow\">→</span></span>\n          </a>\n\n          <a href=\"pages/events.html\" class=\"promise-card in-view\">\n            <div>\n              <span class=\"promise-card__num\">ii.</span>\n              <h3>Take action.</h3>\n              <p>Join an initiative, attend an event, or contribute to our global learning community.</p>\n            </div>\n            <span class=\"promise-card__arrow\">Take action <span class=\"arrow\">→</span></span>\n          </a>\n\n          <a href=\"pages/champion.html\" class=\"promise-card in-view\">\n            <div>\n              <span class=\"promise-card__num\">iii.</span>\n              <h3>Champion the work.</h3>\n              <p>Partner with us, donate, or volunteer your time and expertise.</p>\n            </div>\n            <span class=\"promise-card__arrow\">Champion <span class=\"arrow\">→</span></span>\n          </a>\n        </div>\n      </div>\n    </section>",
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                },
+                                "_padding": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                }
+                            },
+                            "elements": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "a4gd-feature-split",
+            "title": "A4GD — Feature split",
+            "type": "container",
+            "data": [
+                {
+                    "id": "8c284cd",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "padding": {
+                            "unit": "px",
+                            "top": 0,
+                            "right": 0,
+                            "bottom": 0,
+                            "left": 0,
+                            "isLinked": true
+                        }
+                    },
+                    "elements": [
+                        {
+                            "id": "863f357",
+                            "elType": "widget",
+                            "widgetType": "html",
+                            "settings": {
+                                "html": "<section class=\"feature-split section--cream section\">\n      <div class=\"container\">\n        <div class=\"feature-split__grid\">\n          <div class=\"feature-split__image in-view\">\n            <img src=\"/wp-content/uploads/2026/07/05-placeholder.jpg\" alt=\"A gallery opening with people in conversation, viewed from above.\">\n          </div>\n          <div class=\"in-view\">\n            <span class=\"eyebrow eyebrow--clay\">Make a Difference</span>\n            <h2 style=\"margin-top:1.5rem;\">A creative force, for over two decades.</h2>\n            <p class=\"lead\">\n              Since 2002 we have been facilitating the creative sector and stakeholders of development to collectively tackle socio-cultural, economic, and ecological challenges — and support underrepresented individuals and communities worldwide.\n            </p>\n            <ul class=\"feature-split__list\">\n              <li>\n                <a href=\"pages/invest-partner.html\">\n                  <span>Become a creative partner</span>\n                  <small>Collaborate &amp; Partner →</small>\n                </a>\n              </li>\n              <li>\n                <a href=\"pages/artishake.html\">\n                  <span>Show your commitment</span>\n                  <small>Speak Up &amp; Share →</small>\n                </a>\n              </li>\n              <li>\n                <a href=\"pages/donate-sponsor.html\">\n                  <span>Nurture the art power</span>\n                  <small>Donate &amp; Support →</small>\n                </a>\n              </li>\n              <li>\n                <a href=\"pages/volunteer-intern.html\">\n                  <span>Join the team</span>\n                  <small>Volunteer &amp; Intern →</small>\n                </a>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </section>",
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                },
+                                "_padding": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                }
+                            },
+                            "elements": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "a4gd-manifesto",
+            "title": "A4GD — Manifesto (dark)",
+            "type": "container",
+            "data": [
+                {
+                    "id": "7a166cc",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "padding": {
+                            "unit": "px",
+                            "top": 0,
+                            "right": 0,
+                            "bottom": 0,
+                            "left": 0,
+                            "isLinked": true
+                        }
+                    },
+                    "elements": [
+                        {
+                            "id": "8247256",
+                            "elType": "widget",
+                            "widgetType": "html",
+                            "settings": {
+                                "html": "<section class=\"manifesto\">\n      <div class=\"container\">\n        <img class=\"manifesto__mark\" src=\"/wp-content/themes/art4dev/assets/logos/logo-mark-dark.svg\" alt=\"Arts for Global Development mark\">\n        <h2>We are <em>Arts</em> for Global Development.</h2>\n        <p>We believe art is a catalyst for learning, healing, and meaningful, positive change.</p>\n        <p>We believe local stories matter globally, and that global perspectives enrich local action.</p>\n        <p>We believe inclusion, curiosity, and collaboration are essential to lasting impact.</p>\n        <div class=\"manifesto__sig\">— Since 2002 —</div>\n      </div>\n    </section>",
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                },
+                                "_padding": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                }
+                            },
+                            "elements": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "a4gd-donate-panel",
+            "title": "A4GD — Donate panel",
+            "type": "container",
+            "data": [
+                {
+                    "id": "09edf39",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "padding": {
+                            "unit": "px",
+                            "top": 0,
+                            "right": 0,
+                            "bottom": 0,
+                            "left": 0,
+                            "isLinked": true
+                        }
+                    },
+                    "elements": [
+                        {
+                            "id": "5512df8",
+                            "elType": "widget",
+                            "widgetType": "html",
+                            "settings": {
+                                "html": "<section class=\"section--cream\" style=\"padding-block:5rem;\"><div class=\"container\"><div class=\"donate-panel\">\n          <img src=\"/wp-content/themes/art4dev/assets/logos/logo-mark.svg\" alt=\"\" class=\"donate-panel__mark\">\n          <span class=\"eyebrow eyebrow--center eyebrow--clay\" style=\"display:block;text-align:center;\">Donate to</span>\n          <h3>Arts for Global Development, Inc.</h3>\n          <p>Support programs that apply the arts and culture to challenge and address socio-ecological inequities.</p>\n          <div class=\"donate-panel__btns\">\n            <a href=\"pages/donate-sponsor.html\" class=\"donate-panel__btn-pp\">PayPal</a>\n            <a href=\"pages/donate-sponsor.html\" class=\"donate-panel__btn-venmo\">Venmo</a>\n            <a href=\"pages/donate-sponsor.html\" class=\"btn btn--outline\" style=\"margin-top:0.5rem;\">Donate with debit or credit card</a>\n          </div>\n        </div></div></section>",
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                },
+                                "_padding": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                }
+                            },
+                            "elements": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "a4gd-pillars",
+            "title": "A4GD — Pillars (What We Do)",
+            "type": "container",
+            "data": [
+                {
+                    "id": "186e132",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "padding": {
+                            "unit": "px",
+                            "top": 0,
+                            "right": 0,
+                            "bottom": 0,
+                            "left": 0,
+                            "isLinked": true
+                        }
+                    },
+                    "elements": [
+                        {
+                            "id": "08baa21",
+                            "elType": "widget",
+                            "widgetType": "html",
+                            "settings": {
+                                "html": "<section class=\"section\"><div class=\"container\"><div class=\"pillars\">\n\n          <article class=\"pillar in-view\">\n            <div class=\"pillar__num\">i.</div>\n            <h2 class=\"pillar__title\">Consulting</h2>\n            <div class=\"pillar__body\">\n              <p>We partner with arts organizations, development agencies, academic institutions, and purpose-driven businesses to design and implement creative strategies that create meaningful, measurable impact.</p>\n              <ul>\n                <li>Arts integration into SDG-aligned programs and ESG strategies</li>\n                <li>Community engagement and participatory program design</li>\n                <li>Creative communications and storytelling for social change</li>\n                <li>Arts-based research and evaluation frameworks</li>\n              </ul>\n            </div>\n            <div class=\"pillar__cta\"><a href=\"consulting.html\">Learn more <span class=\"arrow\">→</span></a></div>\n          </article>\n\n          <article class=\"pillar in-view\">\n            <div class=\"pillar__num\">ii.</div>\n            <h2 class=\"pillar__title\">Creative Placemaking &amp; Experience</h2>\n            <div class=\"pillar__body\">\n              <p>We transform physical and virtual spaces into sites of inquiry, dialogue, and collective creation — from exhibitions and workshops to conference experiences and virtual safe places.</p>\n              <ul>\n                <li>Long-term and pop-up exhibitions on identity, climate, water, health</li>\n                <li>Arts program design for corporate, nonprofit, and public spaces</li>\n                <li>Interactive workshops for diverse audiences</li>\n                <li>Gallery talks, panel discussions, community gatherings</li>\n              </ul>\n            </div>\n            <div class=\"pillar__cta\"><a href=\"placemaking.html\">Learn more <span class=\"arrow\">→</span></a></div>\n          </article>\n\n          <article class=\"pillar in-view\">\n            <div class=\"pillar__num\">iii.</div>\n            <h2 class=\"pillar__title\">Creative Intel</h2>\n            <div class=\"pillar__body\">\n              <p>At our core, we are a learning organization. We research, experiment, curate, and share knowledge at the intersection of arts, culture, and development — building the evidence base that helps practitioners, policymakers, and educators make the case for creativity as a driver of change.</p>\n              <ul>\n                <li>Original research and published opinion</li>\n                <li>Commissioned reports and interdisciplinary writing</li>\n                <li>Curation of <em>art’ishake</em> e-magazine</li>\n                <li>Speaking engagements and public lectures</li>\n              </ul>\n            </div>\n            <div class=\"pillar__cta\"><a href=\"creative-intel.html\">Learn more <span class=\"arrow\">→</span></a></div>\n          </article>\n\n          <article class=\"pillar in-view\">\n            <div class=\"pillar__num\">iv.</div>\n            <h2 class=\"pillar__title\">Design Lab</h2>\n            <div class=\"pillar__body\">\n              <p>The Design Lab is where we prototype, make, and celebrate. It is the creative studio of Art4Development.Net — a space for designing tangible, arts-infused tools and products that educate, inspire, and generate impact.</p>\n              <ul>\n                <li>Lili’s Alphabet Book &amp; Game — bilingual literacy tool for children 4–12</li>\n                <li>The Spoon Puppet Kit — eco-friendly arts &amp; crafts kit on soil health</li>\n                <li>Upcycled Promotional Goods (with The Revival, Ghana)</li>\n              </ul>\n            </div>\n            <div class=\"pillar__cta\"><a href=\"design-lab.html\">Learn more <span class=\"arrow\">→</span></a></div>\n          </article>\n\n        </div></div></section>",
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                },
+                                "_padding": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                }
+                            },
+                            "elements": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "a4gd-principles",
+            "title": "A4GD — Principles (People/Planet/Performance)",
+            "type": "container",
+            "data": [
+                {
+                    "id": "1cfb93e",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "padding": {
+                            "unit": "px",
+                            "top": 0,
+                            "right": 0,
+                            "bottom": 0,
+                            "left": 0,
+                            "isLinked": true
+                        }
+                    },
+                    "elements": [
+                        {
+                            "id": "4a49750",
+                            "elType": "widget",
+                            "widgetType": "html",
+                            "settings": {
+                                "html": "<section class=\"section section--cream\"><div class=\"container\"><div class=\"principles\">\n          <div class=\"principle in-view\">\n            <span class=\"principle__icon\">i</span>\n            <h3>People</h3>\n            <p>\n              We center children, youth, and women — particularly those from underrepresented and underserved communities — in everything we do. We believe in the dignity of all voices, the value of lived experience, and the power of co-creation. Mutual respect, active listening, and authenticity are not aspirations for us; they are how we work.\n            </p>\n          </div>\n          <div class=\"principle in-view\">\n            <span class=\"principle__icon\">ii</span>\n            <h3>Planet</h3>\n            <p>\n              We are committed to ‘one health’: the understanding that human well-being and ecological health are inseparable. We actively promote eco-arts and nature-positive creative practices as tools for building environmental consciousness and driving sustainability at every scale.\n            </p>\n          </div>\n          <div class=\"principle in-view\">\n            <span class=\"principle__icon\">iii</span>\n            <h3>Performance &amp; Prosperity</h3>\n            <p>\n              We are creative social entrepreneurs. We value the process of change as much as the outcomes it produces. By integrating arts into development strategies, we cultivate the curiosity, empathy, and collaborative spirit that make lasting transformation possible — and we build pathways to economic well-being for artists and communities along the way.\n            </p>\n          </div>\n        </div></div></section>",
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                },
+                                "_padding": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                }
+                            },
+                            "elements": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "slug": "a4gd-our-purpose",
+            "title": "A4GD — Our Purpose (intro)",
+            "type": "container",
+            "data": [
+                {
+                    "id": "8b6a724",
+                    "elType": "container",
+                    "settings": {
+                        "content_width": "full",
+                        "padding": {
+                            "unit": "px",
+                            "top": 0,
+                            "right": 0,
+                            "bottom": 0,
+                            "left": 0,
+                            "isLinked": true
+                        }
+                    },
+                    "elements": [
+                        {
+                            "id": "6fb3d23",
+                            "elType": "widget",
+                            "widgetType": "html",
+                            "settings": {
+                                "html": "<section class=\"hero-intro\">\n      <div class=\"container\">\n        <div class=\"hero-intro__grid\">\n          <h2 class=\"hero-intro__label reveal\">Our Purpose</h2>\n          <div class=\"reveal\">\n            <p class=\"hero-intro__body\">\n              At Arts for Global Development we bring a multi-disciplinary, cross-sectoral and participatory approach to development — engaging individuals and organizations worldwide in creating and maintaining arts-infused positive impact. A registered 501(c)3 educational nonprofit, we champion the use and application of the arts to challenge societal inequities and environmental degradation.\n            </p>\n            <div class=\"hero-intro__meta\">\n              <a href=\"pages/who-we-are.html\" class=\"btn btn--ink\">Our story <span class=\"arrow\">→</span></a>\n              <a href=\"pages/initiatives.html\" class=\"link-arrow\">See current work <span class=\"arrow\">→</span></a>\n            </div>\n          </div>\n        </div>\n        <div class=\"hero-intro__rule\"></div>\n      </div>\n    </section>",
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                },
+                                "_padding": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": true
+                                }
+                            },
+                            "elements": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

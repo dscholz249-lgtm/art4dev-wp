@@ -275,6 +275,7 @@
   },
 
   "customTemplates": [
+    { "name": "page-elementor",   "title": "Elementor (full width)",  "postTypes": ["page"] },
     { "name": "front-page",       "title": "Front Page (Hero)",       "postTypes": ["page"] },
     { "name": "page-with-hero",   "title": "Interior Page with Hero", "postTypes": ["page"] },
     { "name": "single-initiative","title": "Initiative Detail",       "postTypes": ["initiative"] },

@@ -14,7 +14,7 @@ set -euo pipefail
 
 # Build marker — if this line is absent from the deploy logs, Railway is running a stale
 # image and didn't rebuild from the latest commit.
-echo '[railway-entrypoint] build: v9-upload-64m'
+echo '[railway-entrypoint] build: v10-elementor'
 
 # --- 0. Force a single MPM (prefork) at RUNTIME --------------------------------------
 # The base image ships with both mpm_event and mpm_prefork enabled -> Apache aborts with
@@ -97,6 +97,16 @@ seed_database() {
 		fi
 	else
 		echo "[admin] WP_ADMIN_PASSWORD not set — skipping admin credential override."
+	fi
+
+	# --- Elementor: ensure active + provision brand kit/section library (content-safe) ------
+	# Plugins are baked into the image; activate them idempotently (never touches content).
+	wp --path=/var/www/html --allow-root plugin activate advanced-custom-fields elementor wordpress-importer >/dev/null 2>&1 || true
+	# Apply the brand kit + "A4GD —" section library to the live DB. The importer is gated
+	# (provision-once per bundle version), so it adds Elementor's own records on first run and
+	# then leaves everything — including any client customizations — untouched on later boots.
+	if [ -f /seed/elementor-bundle.json ] && [ -f /usr/local/bin/a4gd-elementor-import.php ]; then
+		wp --path=/var/www/html --allow-root eval-file /usr/local/bin/a4gd-elementor-import.php 2>&1 || echo "[elementor] provisioning step skipped/failed"
 	fi
 }
 seed_database &
