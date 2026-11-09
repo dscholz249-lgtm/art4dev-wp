@@ -946,7 +946,15 @@ p:last-child { margin-bottom: 0; }
    Page hero (interior pages)
    ------------------------------------------------------------ */
 .page-hero {
-  padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 5vw, 5rem);
+  padding: clamp(2rem, 3vw, 3rem) 0 clamp(1.75rem, 2.5vw, 2.5rem);
+}
+/* The first content section sits directly under the page hero, which already supplies bottom
+   spacing. Without this it would add its own full section top padding + block-gap margin on top
+   of the hero's — opening a large empty band under the intro on every interior page. Collapse
+   that redundant doubling (keeps a little breathing room, drops the void). */
+.page-hero + .section {
+  margin-top: 0;
+  padding-top: clamp(1.25rem, 2vw, 2rem);
 }
 .page-hero__crumbs {
   font-size: 0.8rem;
