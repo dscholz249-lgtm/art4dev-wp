@@ -14,7 +14,7 @@ set -euo pipefail
 
 # Build marker — if this line is absent from the deploy logs, Railway is running a stale
 # image and didn't rebuild from the latest commit.
-echo '[railway-entrypoint] build: v10-elementor'
+echo '[railway-entrypoint] build: v11-uploads-volume'
 
 # --- 0. Force a single MPM (prefork) at RUNTIME --------------------------------------
 # The base image ships with both mpm_event and mpm_prefork enabled -> Apache aborts with
@@ -44,6 +44,18 @@ seed_database() {
 		sleep 1; i=$((i + 1))
 		[ "$i" -gt 90 ] && { echo '[seed] wp-config.php never appeared — giving up.'; return 0; }
 	done
+
+	# --- Persistent uploads volume: seed + fix ownership --------------------------------
+	# wp-content/uploads is a Railway VOLUME so client media survives redeploys. But a freshly
+	# mounted volume is empty and typically root-owned, which (a) hides the baked placeholder and
+	# (b) stops PHP (www-data) from writing new uploads at all. Seed the baked files in without
+	# clobbering anything the client has uploaded, then hand the whole tree to www-data. Both are
+	# idempotent, so this is safe on every boot — not just the first.
+	local UP=/var/www/html/wp-content/uploads
+	mkdir -p "$UP"
+	cp -rn /usr/src/wordpress/wp-content/uploads/. "$UP"/ 2>/dev/null || true
+	chown -R www-data:www-data "$UP" 2>/dev/null || true
+	echo "[uploads] volume seeded + chowned ($(find "$UP" -type f 2>/dev/null | wc -l | tr -d ' ') files present)"
 
 	# import.php: 0 = freshly imported, 5 = already seeded, anything else = failure.
 	# Capture the exit code WITHOUT tripping `set -e` — exit 5 (already seeded) is the normal
