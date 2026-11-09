@@ -359,7 +359,7 @@ p:last-child { margin-bottom: 0; }
 /* The horizontal logo SVG contains both the mark and the wordmark.
    Scaled to feel proportionate against the nav at all breakpoints. */
 .site-logo__mark {
-  height: clamp(36px, 4vw, 52px);
+  height: clamp(46px, 5vw, 68px);
   width: auto;
   display: block;
 }
@@ -395,6 +395,16 @@ p:last-child { margin-bottom: 0; }
 .site-nav a:hover::after,
 .site-nav a[aria-current="page"]::after { transform: scaleX(1); }
 .site-nav a[aria-current="page"] { color: var(--color-clay); }
+
+/* The theme's hover affordance is the clay ::after sweep above. Suppress WordPress's global
+   elements.link hover underline (theme.json) on nav links so the two don't double up — the
+   submenu items were showing a blue text-decoration underline on top of the gold sweep. */
+.site-nav a:hover,
+.site-nav a:focus,
+.site-nav .wp-block-navigation-item__content:hover,
+.site-nav .wp-block-navigation-item__content:focus {
+  text-decoration: none;
+}
 
 /* Dropdown */
 .nav-item--has-menu { position: relative; }
